@@ -12,9 +12,11 @@ datasource db {
 
 model Admin {
   id_admin   String   @id @default(uuid())
+  nama_admin String   @db.VarChar(50)
   username   String   @db.VarChar(50)
   password   String   @db.VarChar(100)
   foto_admin String?  @db.Text
+  active     Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
@@ -22,115 +24,112 @@ model Admin {
 }
 
 model Agama {
-  id_agama   String   @id @default(uuid())
-  nama_agama String   @db.VarChar(25)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  Siswa      Siswa[]
+  id_agama   String     @id @default(uuid())
+  nama_agama String     @db.VarChar(50)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  Karyawan   Karyawan[]
 
   @@map("agama")
 }
 
-model Kelas {
-  id_kelas   String   @id @default(uuid())
-  nama_kelas String   @db.VarChar(50)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  Siswa      Siswa[]
+model Karyawan {
+  id_karyawan       String              @id @default(uuid())
+  no_karyawan       Int                 @db.Integer
+  nama_karyawan     String              @db.VarChar(50)
+  jenis_kelamin     String              @db.VarChar(25)
+  tempat_lahir      String              @db.Text
+  tanggal_lahir     DateTime            @db.Date
+  tanggal_masuk     DateTime            @db.Date
+  id_agama          String
+  agama             Agama               @relation(fields: [id_agama], references: [id_agama])
+  alamat            String              @db.Text
+  no_telp           Int                 @db.Integer
+  foto_karyawan     String?             @db.Text
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  PengambilanBarang PengambilanBarang[]
 
-  @@map("kelas")
+  @@map("karyawan")
 }
 
-model Siswa {
-  id_siswa      String       @id @default(uuid())
-  no_anggota    Int          @db.Integer
-  nama_siswa    String       @db.VarChar(50)
-  nis           Int          @db.Integer
-  nisn          Int          @db.Integer
-  tanggal_lahir String       @db.VarChar(50)
-  tempat_lahir  String       @db.Text
-  jenis_kelamin String       @db.VarChar(15)
-  id_agama      String
-  agama         Agama        @relation(fields: [id_agama], references: [id_agama])
-  alamat        String       @db.Text
-  id_kelas      String
-  kelas         Kelas        @relation(fields: [id_kelas], references: [id_kelas])
-  foto_siswa    String?      @db.Text
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  Peminjaman    Peminjaman[]
-  Riwayat       Riwayat[]
+model KategoriBarang {
+  id_kategori_barang   String   @id @default(uuid())
+  nama_kategori_barang String   @db.VarChar(50)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  Barang               Barang[]
 
-  @@map("siswa")
+  @@map("kategori_barang")
 }
 
-model RakBuku {
-  id_rak_buku   String   @id @default(uuid())
-  nama_rak_buku String   @db.VarChar(50)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  Buku          Buku[]
+model SatuanBarang {
+  id_satuan_barang   String   @id @default(uuid())
+  nama_satuan_barang String   @db.VarChar(50)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  Barang             Barang[]
 
-  @@map("rak_buku")
+  @@map("satuan_barang")
 }
 
-model Buku {
-  id_buku      String       @id @default(uuid())
-  judul_buku   String       @db.VarChar(50)
-  pengarang    String       @db.VarChar(50)
-  penerbit     String       @db.VarChar(50)
-  tahun_terbit Int          @db.Integer
-  deskripsi    String       @db.Text
-  stok_buku    Int          @db.Integer
-  foto_buku    String?      @db.Text
-  id_rak_buku  String
-  rak_buku     RakBuku      @relation(fields: [id_rak_buku], references: [id_rak_buku])
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  Peminjaman   Peminjaman[]
-  Riwayat      Riwayat[]
+model Pemasok {
+  id_pemasok          String   @id @default(uuid())
+  nama_pemasok        String   @db.VarChar(50)
+  nama_kontak_pemasok String   @db.VarChar(50)
+  no_telp             Int      @db.Integer
+  alamat              String   @db.Text
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  Barang              Barang[]
 
-  @@map("buku")
+  @@map("pemasok")
 }
 
-// model Denda {
-//   id_denda   String       @id @default(uuid())
-//   nominal    Int          @db.Integer
-//   createdAt  DateTime     @default(now())
-//   updatedAt  DateTime     @updatedAt
-//   Peminjaman Peminjaman[]
+model Barang {
+  id_barang          String              @id @default(uuid())
+  kode_barang        String              @db.VarChar(50)
+  nama_barang        String              @db.VarChar(50)
+  id_kategori_barang String
+  kategori_barang    KategoriBarang      @relation(fields: [id_kategori_barang], references: [id_kategori_barang])
+  stok_barang        Int                 @db.Integer
+  id_satuan_barang   String
+  satuan_barang      SatuanBarang        @relation(fields: [id_satuan_barang], references: [id_satuan_barang])
+  lokasi_barang      String              @db.Text
+  id_pemasok         String
+  pemasok            Pemasok             @relation(fields: [id_pemasok], references: [id_pemasok])
+  keterangan_barang  String              @db.Text
+  foto_barang        String?             @db.Text
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  PengambilanBarang  PengambilanBarang[]
+  BarangMasuk        BarangMasuk[]
 
-//   @@map("denda")
-// }
-
-model Peminjaman {
-  id_peminjaman   String   @id @default(uuid())
-  id_siswa        String
-  siswa           Siswa    @relation(fields: [id_siswa], references: [id_siswa])
-  id_buku         String
-  buku            Buku     @relation(fields: [id_buku], references: [id_buku])
-  denda Int @db.Integer
-  status          String   @db.VarChar(30)
-  tanggal_pinjam  DateTime @default(now()) @db.Date
-  tanggal_kembali DateTime @db.Date
-  keterlambatan   DateTime? @db.Date
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  @@map("peminjaman")
+  @@map("barang")
 }
 
-model Riwayat {
-  id_riwayat      String   @id @default(uuid())
-  id_siswa        String
-  siswa           Siswa    @relation(fields: [id_siswa], references: [id_siswa])
-  id_buku         String
-  buku            Buku     @relation(fields: [id_buku], references: [id_buku])
-  tanggal_pinjam  DateTime @default(now()) @db.Date
-  tanggal_kembali DateTime @db.Date
-  status          String   @db.VarChar(25)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+model PengambilanBarang {
+  id_pengambilan_barang      String   @id @default(uuid())
+  tanggal_pengambilan_barang DateTime @db.Date
+  id_barang                  String
+  barang                     Barang   @relation(fields: [id_barang], references: [id_barang])
+  id_karyawan                String
+  karyawan                   Karyawan @relation(fields: [id_karyawan], references: [id_karyawan])
+  jumlah_pengambilan_barang  Int      @db.Integer
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime @updatedAt
 
-  @@map("riwayat")
+  @@map("pengambilan_barang")
+}
+
+model BarangMasuk {
+  id_barang_masuk      String   @id @default(uuid())
+  tanggal_barang_masuk DateTime @db.Date
+  id_barang            String
+  barang               Barang   @relation(fields: [id_barang], references: [id_barang])
+  jumlah_barang_masuk  Int      @db.Integer
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@map("barang_masuk")
 }
