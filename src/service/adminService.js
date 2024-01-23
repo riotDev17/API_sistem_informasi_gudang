@@ -5,6 +5,7 @@ import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
 import {
   loginAdminValidation,
+  logoutAdminValidation,
   registerAdminValidation,
 } from '../validation/adminValidation.js';
 
@@ -71,7 +72,23 @@ const loginAdminService = async (request) => {
   }
 };
 
+const logoutAdminService = async (username) => {
+  username = validation(logoutAdminValidation, username);
+  const admin = await prismaClient.admin.findFirst({
+    where: {
+      username: username,
+    },
+  });
+
+  if (!admin) {
+    throw new ResponseError(404, 'Admin tidak ditemukan');
+  }
+
+  return;
+};
+
 export default {
   registerAdminService,
   loginAdminService,
+  logoutAdminService,
 };

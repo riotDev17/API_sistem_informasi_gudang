@@ -11,4 +11,6 @@ const loginAdminValidation = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
-export { registerAdminValidation, loginAdminValidation };
+const logoutAdminValidation = Joi.string().max(50).required();
+
+export { registerAdminValidation, loginAdminValidation , logoutAdminValidation };

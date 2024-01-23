@@ -1,4 +1,5 @@
 import adminService from '../service/adminService.js';
+import { ResponseError } from '../error/responseError.js';
 
 const registerAdminController = async (req, res, next) => {
   try {
@@ -31,7 +32,27 @@ const loginAdminController = async (req, res, next) => {
   }
 };
 
+const logoutAdminController = async (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      throw new ResponseError(401, 'Token tidak ditemukan , gagal logout!');
+    }
+
+    const username = req.admin.username;
+    await adminService.logoutAdminService(username);
+    res.clearCookie('token');
+    res.status(200).json({
+      status: 'success',
+      message: 'Berhasil logout',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   registerAdminController,
   loginAdminController,
+  logoutAdminController,
 };
