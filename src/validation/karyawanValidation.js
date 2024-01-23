@@ -8,7 +8,7 @@ const createKaryawanValidation = Joi.object({
   tanggal_masuk: Joi.string().max(25).required(),
   id_agama: Joi.string().max(50).required(),
   alamat: Joi.string().required(),
-  no_telp: Joi.number().required(),
+  no_telp: Joi.string().max(25).required(),
   foto_karyawan: Joi.string().required(),
 });
 
