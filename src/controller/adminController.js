@@ -88,7 +88,10 @@ const logoutAdminController = async (req, res, next) => {
   try {
     const token = req.cookies.token;
     if (!token) {
-      throw new ResponseError(401, 'Token tidak ditemukan , gagal logout!');
+      throw new ResponseError(
+        401,
+        'Token tidak ditemukan di cookie , gagal logout!',
+      );
     }
 
     const username = req.admin.username;
