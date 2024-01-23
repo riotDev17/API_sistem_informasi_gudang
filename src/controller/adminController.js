@@ -3,7 +3,7 @@ import adminService from '../service/adminService.js';
 const registerAdminController = async (req, res, next) => {
   try {
     const result = await adminService.registerAdminService(req.body);
-    res.status(200).json({
+    res.status(201).json({
       status: 'Success',
       message: 'Berhasil Register!',
       data: result,
