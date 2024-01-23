@@ -26,5 +26,9 @@ router.get(
   karyawanController.getKaryawanByIdController,
 );
 router.post('/api/karyawan', karyawanController.createKaryawanController);
+router.put(
+  '/api/karyawan/:karyawanId',
+  karyawanController.updateKaryawanController,
+);
 
 export { router };

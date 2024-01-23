@@ -5,6 +5,7 @@ import { ResponseError } from '../error/responseError.js';
 import {
   createKaryawanValidation,
   getKarwayanValidation,
+  updateKaryawanValidation,
 } from '../validation/karyawanValidation.js';
 
 const getKaryawanService = async () => {
@@ -28,6 +29,9 @@ const getKaryawanService = async () => {
       foto_karyawan: true,
       createdAt: true,
       updatedAt: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
     },
   });
 };
@@ -107,8 +111,49 @@ const createKaryawanService = async (request) => {
   });
 };
 
+const updateKaryawanService = async (request) => {
+  const karyawan = await validation(updateKaryawanValidation, request);
+  const karyawanExist = await prismaClient.karyawan.findUnique({
+    where: {
+      id_karyawan: karyawan.id_karyawan,
+    },
+  });
+
+  if (!karyawanExist) {
+    throw new ResponseError(404, 'Data Karyawan Tidak Ditemukan!');
+  }
+
+  return prismaClient.karyawan.update({
+    where: {
+      id_karyawan: karyawan.id_karyawan,
+    },
+    data: karyawan,
+    select: {
+      id_karyawan: true,
+      no_karyawan: true,
+      nama_karyawan: true,
+      jenis_kelamin: true,
+      tempat_lahir: true,
+      tanggal_lahir: true,
+      tanggal_masuk: true,
+      agama: {
+        select: {
+          id_agama: true,
+          nama_agama: true,
+        },
+      },
+      alamat: true,
+      no_telp: true,
+      foto_karyawan: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 export default {
   getKaryawanService,
   getKaryawanByIdService,
   createKaryawanService,
+  updateKaryawanService,
 };

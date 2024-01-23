@@ -62,8 +62,45 @@ const createKaryawanController = async (req, res, next) => {
   }
 };
 
+const updateKaryawanController = async (req, res, next) => {
+  try {
+    uploadFile.single('foto_karyawan')(req, res, async (error) => {
+      if (error instanceof multer.MulterError) {
+        res.status(400).json({
+          status: 'Error',
+          message: error.message,
+        });
+      } else if (error) {
+        next(error);
+      }
+
+      const { karyawanId } = req.params;
+      const request = req.body;
+      request.id_karyawan = karyawanId;
+
+      if (req.file) {
+        request.foto_karyawan = req.file.path;
+      }
+
+      try {
+        const result = await karyawanService.updateKaryawanService(request);
+        res.status(200).json({
+          status: 'Success',
+          message: 'Berhasil Mengubah Data karyawan!',
+          data: result,
+        });
+      } catch (error) {
+        next(error);
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getKaryawanController,
   getKaryawanByIdController,
   createKaryawanController,
+  updateKaryawanController,
 };
