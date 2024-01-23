@@ -1,8 +1,12 @@
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { validation } from '../validation/validation.js';
 import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
-import { registerAdminValidation } from '../validation/adminValidation.js';
+import {
+  loginAdminValidation,
+  registerAdminValidation,
+} from '../validation/adminValidation.js';
 
 const registerAdminService = async (request) => {
   const admin = await validation(registerAdminValidation, request);
@@ -30,6 +34,44 @@ const registerAdminService = async (request) => {
   });
 };
 
+const loginAdminService = async (request) => {
+  const admin = await validation(loginAdminValidation, request);
+  const adminData = await prismaClient.admin.findFirst({
+    where: {
+      username: admin.username,
+    },
+  });
+
+  if (!adminData) {
+    throw new ResponseError(401, 'Username atau password salah');
+  }
+
+  const isPasswordMatch = await bcrypt.compare(
+    admin.password,
+    adminData.password,
+  );
+
+  if (!isPasswordMatch) {
+    throw new ResponseError(401, 'Username atau password salah');
+  } else if (isPasswordMatch) {
+    const payload = {
+      id_admin: adminData.id_admin,
+      username: adminData.username,
+    };
+
+    const secretKey = process.env.SECRET_KEY;
+    const tokenExpiresIn = 60 * 60 * 24;
+    const token = jwt.sign(payload, secretKey, { expiresIn: tokenExpiresIn });
+
+    return {
+      nama_admin: adminData.nama_admin,
+      username: adminData.username,
+      token: token,
+    };
+  }
+};
+
 export default {
   registerAdminService,
+  loginAdminService,
 };
