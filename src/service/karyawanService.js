@@ -2,7 +2,10 @@ import { validation } from '../validation/validation.js';
 import { prismaClient } from '../app/database.js';
 import { randomNumber } from '../helpers/randomNumber.js';
 import { ResponseError } from '../error/responseError.js';
-import { createKaryawanValidation } from '../validation/karyawanValidation.js';
+import {
+  createKaryawanValidation,
+  getKarwayanValidation,
+} from '../validation/karyawanValidation.js';
 
 const getKaryawanService = async () => {
   return prismaClient.karyawan.findMany({
@@ -27,6 +30,41 @@ const getKaryawanService = async () => {
       updatedAt: true,
     },
   });
+};
+
+const getKaryawanByIdService = async (karyawanID) => {
+  karyawanID = await validation(getKarwayanValidation, karyawanID);
+  const karyawan = await prismaClient.karyawan.findUnique({
+    where: {
+      id_karyawan: karyawanID,
+    },
+    select: {
+      id_karyawan: true,
+      no_karyawan: true,
+      nama_karyawan: true,
+      jenis_kelamin: true,
+      tempat_lahir: true,
+      tanggal_lahir: true,
+      tanggal_masuk: true,
+      agama: {
+        select: {
+          id_agama: true,
+          nama_agama: true,
+        },
+      },
+      alamat: true,
+      no_telp: true,
+      foto_karyawan: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  if (!karyawan) {
+    throw new ResponseError(404, 'Data Karyawan Tidak Ditemukan!');
+  }
+
+  return karyawan;
 };
 
 const createKaryawanService = async (request) => {
@@ -69,4 +107,8 @@ const createKaryawanService = async (request) => {
   });
 };
 
-export default { getKaryawanService, createKaryawanService };
+export default {
+  getKaryawanService,
+  getKaryawanByIdService,
+  createKaryawanService,
+};

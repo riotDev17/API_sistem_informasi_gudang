@@ -15,6 +15,20 @@ const getKaryawanController = async (req, res, next) => {
   }
 };
 
+const getKaryawanByIdController = async (req, res, next) => {
+  try {
+    const { karyawanId } = req.params;
+    const result = await karyawanService.getKaryawanByIdService(karyawanId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mendapatkan Data karyawan!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createKaryawanController = async (req, res, next) => {
   try {
     uploadFile.single('foto_karyawan')(req, res, async (error) => {
@@ -48,4 +62,8 @@ const createKaryawanController = async (req, res, next) => {
   }
 };
 
-export default { getKaryawanController, createKaryawanController };
+export default {
+  getKaryawanController,
+  getKaryawanByIdController,
+  createKaryawanController,
+};

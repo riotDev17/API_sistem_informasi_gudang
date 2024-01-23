@@ -21,6 +21,10 @@ router.delete('/api/agama/:agamaId', agamaController.deleteAgamaController);
 
 // KARYAWAN
 router.get('/api/karyawan', karyawanController.getKaryawanController);
+router.get(
+  '/api/karyawan/:karyawanId',
+  karyawanController.getKaryawanByIdController,
+);
 router.post('/api/karyawan', karyawanController.createKaryawanController);
 
 export { router };
