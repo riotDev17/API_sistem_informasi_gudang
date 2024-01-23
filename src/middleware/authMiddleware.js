@@ -14,13 +14,14 @@ export const authMiddleware = async (req, res, next) => {
 
   try {
     const token = authorization.split(' ')[1];
-    req.admin = jwt.verify(token, process.env.SECRET_KEY);
+    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    req.admin = decodedToken;
   } catch (e) {
     return res
       .status(401)
       .json({
         status: 'Unauthorized',
-        message: `HTTP 401 : Token tidak valid`,
+        message: 'HTTP 401 : Token tidak valid',
       })
       .end();
   }
