@@ -95,8 +95,8 @@ const logoutAdminController = async (req, res, next) => {
     await adminService.logoutAdminService(username);
     res.clearCookie('token');
     res.status(200).json({
-      status: 'success',
-      message: 'Berhasil logout',
+      status: 'Success',
+      message: 'Berhasil logout!',
     });
   } catch (error) {
     next(error);
