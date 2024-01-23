@@ -21,6 +21,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join('images')));
 app.use(auth);
 app.use(router);
