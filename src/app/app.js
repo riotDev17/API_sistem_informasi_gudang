@@ -5,7 +5,7 @@ import * as path from 'path';
 import swaggerDocs from '../utils/swagger.js';
 import cookieParser from 'cookie-parser';
 import { auth } from '../routes/auth.js';
-// import { router } from '../routes/router.js';
+import { router } from '../routes/router.js';
 import { errorMiddleware } from '../middleware/errorMiddleware.js';
 
 export const app = express();
@@ -23,5 +23,5 @@ app.use(
 app.use(express.json());
 app.use('/images', express.static(path.join('images')));
 app.use(auth);
-// app.use(router);
+app.use(router);
 app.use(errorMiddleware);
