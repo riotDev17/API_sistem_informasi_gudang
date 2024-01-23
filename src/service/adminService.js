@@ -4,6 +4,7 @@ import { validation } from '../validation/validation.js';
 import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
 import {
+  getAdminValidation,
   loginAdminValidation,
   logoutAdminValidation,
   registerAdminValidation,
@@ -101,6 +102,29 @@ const updateAdminService = async (request) => {
   });
 };
 
+const getAdminService = async (username) => {
+  username = validation(getAdminValidation, username);
+  const admin = await prismaClient.admin.findFirst({
+    where: {
+      username: username,
+    },
+    select: {
+      id_admin: true,
+      nama_admin: true,
+      username: true,
+      foto_admin: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  if (!admin) {
+    throw new ResponseError(404, 'Admin tidak ditemukan');
+  }
+
+  return admin;
+};
+
 const logoutAdminService = async (username) => {
   username = validation(logoutAdminValidation, username);
   const admin = await prismaClient.admin.findFirst({
@@ -120,5 +144,6 @@ export default {
   registerAdminService,
   loginAdminService,
   updateAdminService,
+  getAdminService,
   logoutAdminService,
 };

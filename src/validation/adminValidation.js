@@ -17,11 +17,13 @@ const updateAdminValidation = Joi.object({
   foto_admin: Joi.string().optional(),
 });
 
+const getAdminValidation = Joi.string().max(100).required();
 const logoutAdminValidation = Joi.string().max(50).required();
 
 export {
   registerAdminValidation,
   loginAdminValidation,
   updateAdminValidation,
+  getAdminValidation,
   logoutAdminValidation,
 };
