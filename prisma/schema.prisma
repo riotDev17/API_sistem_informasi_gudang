@@ -38,12 +38,12 @@ model Karyawan {
   nama_karyawan     String              @db.VarChar(50)
   jenis_kelamin     String              @db.VarChar(25)
   tempat_lahir      String              @db.Text
-  tanggal_lahir     DateTime            @db.Date
-  tanggal_masuk     DateTime            @db.Date
+  tanggal_lahir     String              @db.VarChar(50)
+  tanggal_masuk     String              @db.VarChar(50)
   id_agama          String
   agama             Agama               @relation(fields: [id_agama], references: [id_agama])
   alamat            String              @db.Text
-  no_telp           Int                 @db.Integer
+  no_telp           String              @db.VarChar(25)
   foto_karyawan     String?             @db.Text
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @updatedAt
