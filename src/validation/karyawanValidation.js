@@ -12,4 +12,6 @@ const createKaryawanValidation = Joi.object({
   foto_karyawan: Joi.string().required(),
 });
 
-export { createKaryawanValidation };
+const getKarwayanValidation = Joi.string().max(50).required();
+
+export { createKaryawanValidation, getKarwayanValidation };

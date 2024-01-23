@@ -20,6 +20,7 @@ router.put('/api/agama/:agamaId', agamaController.updateAgamaController);
 router.delete('/api/agama/:agamaId', agamaController.deleteAgamaController);
 
 // KARYAWAN
+router.get('/api/karyawan', karyawanController.getKaryawanController);
 router.post('/api/karyawan', karyawanController.createKaryawanController);
 
 export { router };
