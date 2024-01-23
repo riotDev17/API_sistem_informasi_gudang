@@ -98,9 +98,23 @@ const updateKaryawanController = async (req, res, next) => {
   }
 };
 
+const deleteKaryawanController = async (req, res, next) => {
+  try {
+    const { karyawanId } = req.params;
+    await karyawanService.deleteKaryawanService(karyawanId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Menghapus Data karyawan!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getKaryawanController,
   getKaryawanByIdController,
   createKaryawanController,
   updateKaryawanController,
+  deleteKaryawanController,
 };

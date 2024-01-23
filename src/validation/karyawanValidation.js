@@ -26,9 +26,11 @@ const updateKaryawanValidation = Joi.object({
 });
 
 const getKarwayanValidation = Joi.string().max(50).required();
+const deleteKaryawanValidation = Joi.string().max(50).required();
 
 export {
   createKaryawanValidation,
   getKarwayanValidation,
   updateKaryawanValidation,
+  deleteKaryawanValidation,
 };

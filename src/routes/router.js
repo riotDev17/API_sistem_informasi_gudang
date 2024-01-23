@@ -30,5 +30,9 @@ router.put(
   '/api/karyawan/:karyawanId',
   karyawanController.updateKaryawanController,
 );
+router.delete(
+  '/api/karyawan/:karyawanId',
+  karyawanController.deleteKaryawanController,
+);
 
 export { router };

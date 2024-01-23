@@ -4,6 +4,7 @@ import { randomNumber } from '../helpers/randomNumber.js';
 import { ResponseError } from '../error/responseError.js';
 import {
   createKaryawanValidation,
+  deleteKaryawanValidation,
   getKarwayanValidation,
   updateKaryawanValidation,
 } from '../validation/karyawanValidation.js';
@@ -151,9 +152,29 @@ const updateKaryawanService = async (request) => {
   });
 };
 
+const deleteKaryawanService = async (karyawanID) => {
+  karyawanID = await validation(deleteKaryawanValidation, karyawanID);
+  const karyawanExist = await prismaClient.karyawan.count({
+    where: {
+      id_karyawan: karyawanID,
+    },
+  });
+
+  if (!karyawanExist) {
+    throw new ResponseError(404, 'Data Karyawan Tidak Ditemukan!');
+  }
+
+  return prismaClient.karyawan.delete({
+    where: {
+      id_karyawan: karyawanID,
+    },
+  });
+};
+
 export default {
   getKaryawanService,
   getKaryawanByIdService,
   createKaryawanService,
   updateKaryawanService,
+  deleteKaryawanService,
 };
