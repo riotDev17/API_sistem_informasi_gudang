@@ -16,7 +16,6 @@ model Admin {
   username   String   @db.VarChar(50)
   password   String   @db.VarChar(100)
   foto_admin String?  @db.Text
-  active     Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
