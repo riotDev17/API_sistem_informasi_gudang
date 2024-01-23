@@ -7,6 +7,7 @@ import {
   loginAdminValidation,
   logoutAdminValidation,
   registerAdminValidation,
+  updateAdminValidation,
 } from '../validation/adminValidation.js';
 
 const registerAdminService = async (request) => {
@@ -72,6 +73,34 @@ const loginAdminService = async (request) => {
   }
 };
 
+const updateAdminService = async (request) => {
+  const admin = await validation(updateAdminValidation, request);
+  const adminExist = await prismaClient.admin.count({
+    where: {
+      id_admin: admin.id_admin,
+    },
+  });
+
+  if (adminExist !== 1) {
+    throw new ResponseError(404, 'Admin tidak ditemukan');
+  }
+
+  return prismaClient.admin.update({
+    where: {
+      id_admin: admin.id_admin,
+    },
+    data: admin,
+    select: {
+      id_admin: true,
+      nama_admin: true,
+      username: true,
+      foto_admin: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 const logoutAdminService = async (username) => {
   username = validation(logoutAdminValidation, username);
   const admin = await prismaClient.admin.findFirst({
@@ -90,5 +119,6 @@ const logoutAdminService = async (username) => {
 export default {
   registerAdminService,
   loginAdminService,
+  updateAdminService,
   logoutAdminService,
 };

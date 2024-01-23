@@ -1,3 +1,5 @@
+import multer from 'multer';
+import uploadFile from '../utils/multer.js';
 import adminService from '../service/adminService.js';
 import { ResponseError } from '../error/responseError.js';
 
@@ -32,6 +34,42 @@ const loginAdminController = async (req, res, next) => {
   }
 };
 
+const updateAdminController = async (req, res, next) => {
+  try {
+    uploadFile.single('foto_admin')(req, res, async (error) => {
+      if (error instanceof multer.MulterError) {
+        res.status(400).json({
+          status: 'Error',
+          message: error.message,
+        });
+      } else if (error) {
+        next(error);
+      }
+
+      const { adminId } = req.params;
+      const request = req.body;
+      request.id_admin = adminId;
+
+      if (req.file) {
+        request.foto_admin = req.file.path;
+      }
+
+      try {
+        const result = await adminService.updateAdminService(request);
+        res.status(200).json({
+          status: 'Success',
+          message: 'Berhasil Mengupdate Data Admin',
+          data: result,
+        });
+      } catch (error) {
+        next(error);
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const logoutAdminController = async (req, res, next) => {
   try {
     const token = req.cookies.token;
@@ -54,5 +92,6 @@ const logoutAdminController = async (req, res, next) => {
 export default {
   registerAdminController,
   loginAdminController,
+  updateAdminController,
   logoutAdminController,
 };
