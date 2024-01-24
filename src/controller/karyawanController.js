@@ -2,6 +2,7 @@ import multer from 'multer';
 import uploadFile from '../utils/multer.js';
 import karyawanService from '../service/karyawanService.js';
 
+// GET
 const getKaryawanController = async (req, res, next) => {
   try {
     const result = await karyawanService.getKaryawanService();
@@ -15,6 +16,7 @@ const getKaryawanController = async (req, res, next) => {
   }
 };
 
+// GET BY ID
 const getKaryawanByIdController = async (req, res, next) => {
   try {
     const { karyawanId } = req.params;
@@ -29,6 +31,7 @@ const getKaryawanByIdController = async (req, res, next) => {
   }
 };
 
+// POST
 const createKaryawanController = async (req, res, next) => {
   try {
     uploadFile.single('foto_karyawan')(req, res, async (error) => {
@@ -62,6 +65,7 @@ const createKaryawanController = async (req, res, next) => {
   }
 };
 
+// PUT
 const updateKaryawanController = async (req, res, next) => {
   try {
     uploadFile.single('foto_karyawan')(req, res, async (error) => {
@@ -98,6 +102,7 @@ const updateKaryawanController = async (req, res, next) => {
   }
 };
 
+// DELETE
 const deleteKaryawanController = async (req, res, next) => {
   try {
     const { karyawanId } = req.params;
