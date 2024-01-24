@@ -16,6 +16,21 @@ const getBarangController = async (req, res, next) => {
   }
 };
 
+// GET BY ID
+const getBarangByIdController = async (req, res, next) => {
+  try {
+    const { barangId } = req.params;
+    const result = await barangService.getBarangByIdService(barangId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mendapatkan Data Barang Berdasarkan ID!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // POST
 const createBarangController = async (req, res, next) => {
   try {
@@ -52,5 +67,6 @@ const createBarangController = async (req, res, next) => {
 
 export default {
   getBarangController,
+  getBarangByIdController,
   createBarangController,
 };
