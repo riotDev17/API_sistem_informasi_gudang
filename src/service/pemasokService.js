@@ -23,6 +23,22 @@ const getPemasokService = async () => {
   });
 };
 
+// GET BY ID
+const getPemasokByIdService = async (pemasokId) => {
+  pemasokId = await validation(getPemasokValidation, pemasokId);
+  const pemasok = await prismaClient.pemasok.findFirst({
+    where: {
+      id_pemasok: pemasokId,
+    },
+  });
+
+  if (!pemasok) {
+    throw new ResponseError(404, 'Data Pemasok Tidak Ditemukan!');
+  }
+
+  return pemasok;
+};
+
 // POST
 const createPemasokService = async (request) => {
   const pemasok = await validation(createPemasokValidation, request);
@@ -55,4 +71,5 @@ const createPemasokService = async (request) => {
 export default {
   getPemasokService,
   createPemasokService,
+  getPemasokByIdService,
 };

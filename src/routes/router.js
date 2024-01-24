@@ -84,6 +84,10 @@ router.delete(
 
 // PEMASOK
 router.get('/api/pemasok', pemasokController.getPemasokController);
+router.get(
+  '/api/pemasok/:pemasokId',
+  pemasokController.getPemasokByIdController,
+);
 router.post('/api/pemasok', pemasokController.createPemasokController);
 
 export { router };
