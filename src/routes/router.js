@@ -6,6 +6,7 @@ import karyawanController from '../controller/karyawanController.js';
 import satuanBarangController from '../controller/satuanBarangController.js';
 import kategoriBarangController from '../controller/kategoriBarangController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
+import barangController from '../controller/barangController.js';
 
 const router = express.Router();
 router.use(authMiddleware);
@@ -97,5 +98,8 @@ router.delete(
   '/api/pemasok/:pemasokId',
   pemasokController.deletePemasokController,
 );
+
+// BARANG
+router.post('/api/barang', barangController.createBarangController);
 
 export { router };
