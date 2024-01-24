@@ -1,5 +1,19 @@
 import barangMasukService from '../service/barangMasukService.js';
 
+// GET
+const getBarangMasukController = async (req, res, next) => {
+  try {
+    const result = await barangMasukService.getBarangMasukService();
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mendapatkan Semua Data Barang Masuk!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // POST
 const createBarangMasukController = async (req, res, next) => {
   try {
@@ -17,5 +31,6 @@ const createBarangMasukController = async (req, res, next) => {
 };
 
 export default {
+  getBarangMasukController,
   createBarangMasukController,
 };

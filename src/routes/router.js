@@ -134,6 +134,7 @@ router.get(
 );
 
 // BARANG MASUK
+router.get('/api/barang-masuk', barangMasukController.getBarangMasukController);
 router.post(
   '/api/barang-masuk',
   barangMasukController.createBarangMasukController,
