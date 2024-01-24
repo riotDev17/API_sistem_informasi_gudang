@@ -96,7 +96,22 @@ const deletePengambilanBarangManyService = async () => {
     throw new ResponseError(404, 'Data Pengambilan Barang Tidak Ditemukan');
   }
 
-  return prismaClient.pengambilanBarang.deleteMany();
+  const deletePengambilanBarang =
+    await prismaClient.pengambilanBarang.deleteMany();
+
+  if (deletePengambilanBarang) {
+    await prismaClient.laporanPengambilanBarang.create({
+      data: {
+        tanggal_pengambilan_barang:
+          pengambilanBarang.tanggal_pengambilan_barang,
+        id_barang: pengambilanBarang.id_barang,
+        id_karyawan: pengambilanBarang.id_karyawan,
+        jumlah_pengambilan_barang: pengambilanBarang.jumlah_pengambilan_barang,
+      },
+    });
+  }
+
+  return deletePengambilanBarang;
 };
 
 export default {
