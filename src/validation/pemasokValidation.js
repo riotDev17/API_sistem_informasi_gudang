@@ -16,9 +16,11 @@ const updatePemasokValidation = Joi.object({
 });
 
 const getPemasokValidation = Joi.string().max(50).required();
+const deletePemasokValidation = Joi.string().max(50).required();
 
 export {
   createPemasokValidation,
   updatePemasokValidation,
   getPemasokValidation,
+  deletePemasokValidation,
 };

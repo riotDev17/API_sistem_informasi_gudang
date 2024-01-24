@@ -3,9 +3,9 @@ import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
 import {
   createPemasokValidation,
+  deletePemasokValidation,
   getPemasokValidation,
   updatePemasokValidation,
-  //   deletePemasokValidation,
 } from '../validation/pemasokValidation.js';
 
 // GET
@@ -100,9 +100,30 @@ const updatePemasokService = async (request) => {
   });
 };
 
+// DELETE
+const deletePemasokService = async (pemasokId) => {
+  pemasokId = await validation(deletePemasokValidation, pemasokId);
+  const pemasokExist = await prismaClient.pemasok.findFirst({
+    where: {
+      id_pemasok: pemasokId,
+    },
+  });
+
+  if (!pemasokExist) {
+    throw new ResponseError(404, 'Data Pemasok Tidak Ditemukan!');
+  }
+
+  return prismaClient.pemasok.delete({
+    where: {
+      id_pemasok: pemasokId,
+    },
+  });
+};
+
 export default {
   getPemasokService,
   createPemasokService,
   getPemasokByIdService,
   updatePemasokService,
+  deletePemasokService,
 };

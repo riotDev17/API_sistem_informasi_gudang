@@ -61,9 +61,24 @@ const updatePemasokController = async (req, res, next) => {
   }
 };
 
+// DELETE
+const deletePemasokController = async (req, res, next) => {
+  try {
+    const { pemasokId } = req.params;
+    await pemasokService.deletePemasokService(pemasokId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Menghapus Data Pemasok!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getPemasokController,
   createPemasokController,
   getPemasokByIdController,
   updatePemasokController,
+  deletePemasokController,
 };

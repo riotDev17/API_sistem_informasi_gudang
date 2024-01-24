@@ -93,5 +93,9 @@ router.put(
   '/api/pemasok/:pemasokId',
   pemasokController.updatePemasokController,
 );
+router.delete(
+  '/api/pemasok/:pemasokId',
+  pemasokController.deletePemasokController,
+);
 
 export { router };
