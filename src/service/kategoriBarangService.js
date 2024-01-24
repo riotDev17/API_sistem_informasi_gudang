@@ -11,7 +11,7 @@ const createKategoriBarangService = async (request) => {
 
   const kategoriBarangExist = await prismaClient.kategoriBarang.count({
     where: {
-      nama_kategoriBarang: kategoriBarang.nama_kategoriBarang,
+      nama_kategori_barang: kategoriBarang.nama_kategori_barang,
     },
   });
 
