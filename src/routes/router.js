@@ -116,5 +116,9 @@ router.post(
   '/api/pengambilan-barang',
   pengambilanBarangController.createPengambilanBarangController,
 );
+router.delete(
+  '/api/pengambilan-barang/:pengambilanBarangId',
+  pengambilanBarangController.deletePengambilanBarangByIdController,
+);
 
 export { router };

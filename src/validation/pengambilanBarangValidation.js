@@ -8,5 +8,10 @@ const createPengambilanBarangValidation = Joi.object({
 });
 
 const getPengambilanBarangValidation = Joi.string().max(50).required();
+const deletePengambilanBarangValidation = Joi.string().max(50).required();
 
-export { createPengambilanBarangValidation, getPengambilanBarangValidation };
+export {
+  createPengambilanBarangValidation,
+  getPengambilanBarangValidation,
+  deletePengambilanBarangValidation,
+};

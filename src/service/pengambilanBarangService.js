@@ -14,6 +14,7 @@ const getPengambilanBarangService = async () => {
           id_barang: true,
           kode_barang: true,
           nama_barang: true,
+          keterangan_barang: true,
         },
       },
       karyawan: {
@@ -50,6 +51,7 @@ const createPengambilanBarangService = async (request) => {
           id_barang: true,
           kode_barang: true,
           nama_barang: true,
+          keterangan_barang: true,
         },
       },
       karyawan: {
@@ -60,8 +62,28 @@ const createPengambilanBarangService = async (request) => {
         },
       },
       jumlah_pengambilan_barang: true,
+
       createdAt: true,
       updatedAt: true,
+    },
+  });
+};
+
+// DELETE BY ID
+const deletePengambilanBarangByIdService = async (pengambilanBarangId) => {
+  const pengambilanBarang = await prismaClient.pengambilanBarang.findUnique({
+    where: {
+      id_pengambilan_barang: pengambilanBarangId,
+    },
+  });
+
+  if (!pengambilanBarang) {
+    throw new ResponseError(404, 'Pengambilan Barang Tidak Ditemukan');
+  }
+
+  return prismaClient.pengambilanBarang.delete({
+    where: {
+      id_pengambilan_barang: pengambilanBarangId,
     },
   });
 };
@@ -69,4 +91,5 @@ const createPengambilanBarangService = async (request) => {
 export default {
   getPengambilanBarangService,
   createPengambilanBarangService,
+  deletePengambilanBarangByIdService,
 };
