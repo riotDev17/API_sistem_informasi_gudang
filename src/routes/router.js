@@ -37,6 +37,10 @@ router.delete(
 );
 
 // KATEGORI BARANG
+router.get(
+  '/api/kategori-barang',
+  kategoriBarangController.getKategoriBarangController,
+);
 router.post(
   '/api/kategori-barang',
   kategoriBarangController.createKategoriBarangController,
