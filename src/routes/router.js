@@ -7,6 +7,7 @@ import satuanBarangController from '../controller/satuanBarangController.js';
 import kategoriBarangController from '../controller/kategoriBarangController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 import barangController from '../controller/barangController.js';
+import pengambilanBarangController from '../controller/pengambilanBarangController.js';
 
 const router = express.Router();
 router.use(authMiddleware);
@@ -105,5 +106,11 @@ router.get('/api/barang/:barangId', barangController.getBarangByIdController);
 router.post('/api/barang', barangController.createBarangController);
 router.put('/api/barang/:barangId', barangController.updateBarangController);
 router.delete('/api/barang/:barangId', barangController.deleteBarangController);
+
+// PENGAMBILAN BARANG
+router.post(
+  '/api/pengambilan-barang',
+  pengambilanBarangController.createPengambilanBarangController,
+);
 
 export { router };
