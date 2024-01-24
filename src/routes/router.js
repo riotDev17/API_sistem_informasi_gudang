@@ -108,6 +108,10 @@ router.put('/api/barang/:barangId', barangController.updateBarangController);
 router.delete('/api/barang/:barangId', barangController.deleteBarangController);
 
 // PENGAMBILAN BARANG
+router.get(
+  '/api/pengambilan-barang',
+  pengambilanBarangController.getPengambilanBarangController,
+);
 router.post(
   '/api/pengambilan-barang',
   pengambilanBarangController.createPengambilanBarangController,

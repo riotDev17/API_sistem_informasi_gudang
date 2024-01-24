@@ -7,4 +7,6 @@ const createPengambilanBarangValidation = Joi.object({
   jumlah_pengambilan_barang: Joi.number().required(),
 });
 
-export { createPengambilanBarangValidation };
+const getPengambilanBarangValidation = Joi.string().max(50).required();
+
+export { createPengambilanBarangValidation, getPengambilanBarangValidation };
