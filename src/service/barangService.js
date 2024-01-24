@@ -3,6 +3,7 @@ import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
 import {
   createBarangValidation,
+  deleteBarangValidation,
   getBarangValidation,
   updateBarangValidation,
 } from '../validation/barangValidation.js';
@@ -183,9 +184,30 @@ const updateBarangService = async (request) => {
   });
 };
 
+// DELETE
+const deleteBarangService = async (barangId) => {
+  barangId = await validation(deleteBarangValidation, barangId);
+  const barangExist = await prismaClient.barang.findUnique({
+    where: {
+      id_barang: barangId,
+    },
+  });
+
+  if (!barangExist) {
+    throw new ResponseError(404, 'Barang Tidak Ditemukan!');
+  }
+
+  return prismaClient.barang.delete({
+    where: {
+      id_barang: barangId,
+    },
+  });
+};
+
 export default {
   getBarangService,
   getBarangByIdService,
   createBarangService,
   updateBarangService,
+  deleteBarangService,
 };

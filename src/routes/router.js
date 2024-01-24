@@ -104,5 +104,6 @@ router.get('/api/barang', barangController.getBarangController);
 router.get('/api/barang/:barangId', barangController.getBarangByIdController);
 router.post('/api/barang', barangController.createBarangController);
 router.put('/api/barang/:barangId', barangController.updateBarangController);
+router.delete('/api/barang/:barangId', barangController.deleteBarangController);
 
 export { router };

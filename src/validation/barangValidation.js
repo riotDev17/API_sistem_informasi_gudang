@@ -26,5 +26,11 @@ const updateBarangValidation = Joi.object({
 });
 
 const getBarangValidation = Joi.string().max(50).required();
+const deleteBarangValidation = Joi.string().max(50).required();
 
-export { createBarangValidation, updateBarangValidation, getBarangValidation };
+export {
+  createBarangValidation,
+  updateBarangValidation,
+  getBarangValidation,
+  deleteBarangValidation,
+};

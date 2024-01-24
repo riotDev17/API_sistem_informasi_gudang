@@ -102,9 +102,24 @@ const updateBarangController = async (req, res, next) => {
   }
 };
 
+// DELETE
+const deleteBarangController = async (req, res, next) => {
+  try {
+    const { barangId } = req.params;
+    await barangService.deleteBarangService(barangId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Menghapus Data Barang!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getBarangController,
   getBarangByIdController,
   createBarangController,
   updateBarangController,
+  deleteBarangController,
 };
