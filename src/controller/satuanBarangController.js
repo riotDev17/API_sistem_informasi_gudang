@@ -45,8 +45,26 @@ const createSatuanBarangController = async (req, res, next) => {
   }
 };
 
+// PUT
+const updateSatuanBarangController = async (req, res, next) => {
+  try {
+    const { satuanBarangId } = req.params;
+    const request = req.body;
+    request.id_satuan_barang = satuanBarangId;
+    const result = await satuanBarangService.updateSatuanBarangService(request);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Memperbarui Data Satuan Barang!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getSatuanBarangController,
   getSatuanBarangByIdController,
   createSatuanBarangController,
+  updateSatuanBarangController,
 };

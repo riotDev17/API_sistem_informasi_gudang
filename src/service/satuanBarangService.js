@@ -4,6 +4,7 @@ import { ResponseError } from '../error/responseError.js';
 import {
   createSatuanBarangValidation,
   getSatuanBarangValidation,
+  updateSatuanBarangValidation,
 } from '../validation/satuanBarangValidation.js';
 
 // GET
@@ -70,8 +71,36 @@ const createSatuanBarangService = async (request) => {
   });
 };
 
+// PUT
+const updateSatuanBarangService = async (request) => {
+  const satuanBarang = await validation(updateSatuanBarangValidation, request);
+  const satuanBarangExist = await prismaClient.satuanBarang.count({
+    where: {
+      id_satuan_barang: satuanBarang.id_satuan_barang,
+    },
+  });
+
+  if (satuanBarangExist !== 1) {
+    throw new ResponseError(404, 'Satuan Barang Tidak Ditemukan!');
+  }
+
+  return prismaClient.satuanBarang.update({
+    where: {
+      id_satuan_barang: satuanBarang.id_satuan_barang,
+    },
+    data: satuanBarang,
+    select: {
+      id_satuan_barang: true,
+      nama_satuan_barang: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 export default {
   getSatuanBarangService,
   getSatuanBarangByIdService,
   createSatuanBarangService,
+  updateSatuanBarangService,
 };

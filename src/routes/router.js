@@ -72,5 +72,9 @@ router.post(
   '/api/satuan-barang',
   satuanBarangController.createSatuanBarangController,
 );
+router.put(
+  '/api/satuan-barang/:satuanBarangId',
+  satuanBarangController.updateSatuanBarangController,
+);
 
 export { router };
