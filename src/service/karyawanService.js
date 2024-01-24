@@ -9,6 +9,7 @@ import {
   updateKaryawanValidation,
 } from '../validation/karyawanValidation.js';
 
+// GET
 const getKaryawanService = async () => {
   return prismaClient.karyawan.findMany({
     select: {
@@ -37,6 +38,7 @@ const getKaryawanService = async () => {
   });
 };
 
+// GET BY ID
 const getKaryawanByIdService = async (karyawanID) => {
   karyawanID = await validation(getKarwayanValidation, karyawanID);
   const karyawan = await prismaClient.karyawan.findUnique({
@@ -72,6 +74,7 @@ const getKaryawanByIdService = async (karyawanID) => {
   return karyawan;
 };
 
+// POST
 const createKaryawanService = async (request) => {
   const karyawan = await validation(createKaryawanValidation, request);
   const karyawanExist = await prismaClient.karyawan.count({
@@ -112,6 +115,7 @@ const createKaryawanService = async (request) => {
   });
 };
 
+// PUT
 const updateKaryawanService = async (request) => {
   const karyawan = await validation(updateKaryawanValidation, request);
   const karyawanExist = await prismaClient.karyawan.findUnique({
@@ -123,6 +127,8 @@ const updateKaryawanService = async (request) => {
   if (!karyawanExist) {
     throw new ResponseError(404, 'Data Karyawan Tidak Ditemukan!');
   }
+
+  karyawan.no_telp = `+62${karyawan.no_telp}`;
 
   return prismaClient.karyawan.update({
     where: {
@@ -152,6 +158,7 @@ const updateKaryawanService = async (request) => {
   });
 };
 
+// DELETE
 const deleteKaryawanService = async (karyawanID) => {
   karyawanID = await validation(deleteKaryawanValidation, karyawanID);
   const karyawanExist = await prismaClient.karyawan.count({
