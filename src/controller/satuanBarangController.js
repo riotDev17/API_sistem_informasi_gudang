@@ -62,9 +62,24 @@ const updateSatuanBarangController = async (req, res, next) => {
   }
 };
 
+// DELETE
+const deleteSatuanBarangController = async (req, res, next) => {
+  try {
+    const { satuanBarangId } = req.params;
+    await satuanBarangService.deleteSatuanBarangService(satuanBarangId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Menghapus Data Satuan Barang!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getSatuanBarangController,
   getSatuanBarangByIdController,
   createSatuanBarangController,
   updateSatuanBarangController,
+  deleteSatuanBarangController,
 };

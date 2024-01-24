@@ -76,5 +76,9 @@ router.put(
   '/api/satuan-barang/:satuanBarangId',
   satuanBarangController.updateSatuanBarangController,
 );
+router.delete(
+  '/api/satuan-barang/:satuanBarangId',
+  satuanBarangController.deleteSatuanBarangController,
+);
 
 export { router };

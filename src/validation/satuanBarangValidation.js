@@ -10,9 +10,11 @@ const updateSatuanBarangValidation = Joi.object({
 });
 
 const getSatuanBarangValidation = Joi.string().max(50).required();
+const deleteSatuanBarangValidation = Joi.string().max(50).required();
 
 export {
   createSatuanBarangValidation,
   updateSatuanBarangValidation,
   getSatuanBarangValidation,
+  deleteSatuanBarangValidation,
 };

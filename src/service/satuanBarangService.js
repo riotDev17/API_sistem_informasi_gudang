@@ -3,6 +3,7 @@ import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
 import {
   createSatuanBarangValidation,
+  deleteSatuanBarangValidation,
   getSatuanBarangValidation,
   updateSatuanBarangValidation,
 } from '../validation/satuanBarangValidation.js';
@@ -98,9 +99,33 @@ const updateSatuanBarangService = async (request) => {
   });
 };
 
+// DELETE
+const deleteSatuanBarangService = async (satuanBarangId) => {
+  satuanBarangId = await validation(
+    deleteSatuanBarangValidation,
+    satuanBarangId,
+  );
+  const satuanBarangExist = await prismaClient.satuanBarang.count({
+    where: {
+      id_satuan_barang: satuanBarangId,
+    },
+  });
+
+  if (satuanBarangExist !== 1) {
+    throw new ResponseError(404, 'Satuan Barang Tidak Ditemukan!');
+  }
+
+  return prismaClient.satuanBarang.delete({
+    where: {
+      id_satuan_barang: satuanBarangId,
+    },
+  });
+};
+
 export default {
   getSatuanBarangService,
   getSatuanBarangByIdService,
   createSatuanBarangService,
   updateSatuanBarangService,
+  deleteSatuanBarangService,
 };
