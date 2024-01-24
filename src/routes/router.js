@@ -1,14 +1,15 @@
 import express from 'express';
 import adminController from '../controller/adminController.js';
 import agamaController from '../controller/agamaController.js';
+import barangController from '../controller/barangController.js';
 import pemasokController from '../controller/pemasokController.js';
 import karyawanController from '../controller/karyawanController.js';
+import barangMasukController from '../controller/barangMasukController.js';
 import satuanBarangController from '../controller/satuanBarangController.js';
 import kategoriBarangController from '../controller/kategoriBarangController.js';
-import { authMiddleware } from '../middleware/authMiddleware.js';
-import barangController from '../controller/barangController.js';
 import pengambilanBarangController from '../controller/pengambilanBarangController.js';
 import laporanPengambilanBarangController from '../controller/laporanPengambilanBarangController.js';
+import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 router.use(authMiddleware);
@@ -130,6 +131,12 @@ router.delete(
 router.get(
   '/api/laporan-pengambilan-barang',
   laporanPengambilanBarangController.getLaporanPengambilanBarangController,
+);
+
+// BARANG MASUK
+router.post(
+  '/api/barang-masuk',
+  barangMasukController.createBarangMasukController,
 );
 
 export { router };
