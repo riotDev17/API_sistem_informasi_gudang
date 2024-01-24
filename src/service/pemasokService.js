@@ -3,10 +3,25 @@ import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
 import {
   createPemasokValidation,
+  getPemasokValidation,
   //   deletePemasokValidation,
-  //   getPemasokValidation,
   //   updatePemasokValidation,
 } from '../validation/pemasokValidation.js';
+
+// GET
+const getPemasokService = async () => {
+  return prismaClient.pemasok.findMany({
+    select: {
+      id_pemasok: true,
+      nama_pemasok: true,
+      nama_kontak_pemasok: true,
+      no_telp_pemasok: true,
+      alamat_pemasok: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
 
 // POST
 const createPemasokService = async (request) => {
@@ -38,5 +53,6 @@ const createPemasokService = async (request) => {
 };
 
 export default {
+  getPemasokService,
   createPemasokService,
 };

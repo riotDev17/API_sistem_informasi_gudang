@@ -7,4 +7,6 @@ const createPemasokValidation = Joi.object({
   alamat_pemasok: Joi.string().max(100).required(),
 });
 
-export { createPemasokValidation };
+const getPemasokValidation = Joi.string().max(50).required();
+
+export { createPemasokValidation, getPemasokValidation };
