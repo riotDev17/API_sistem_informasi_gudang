@@ -30,7 +30,22 @@ const createBarangMasukController = async (req, res, next) => {
   }
 };
 
+// DELETE BY ID
+const deleteBarangMasukByIdController = async (req, res, next) => {
+  try {
+    const { barangMasukId } = req.params;
+    await barangMasukService.deleteBarangMasukByIdService(barangMasukId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Barang Masuk Berhasil Dihapus!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getBarangMasukController,
   createBarangMasukController,
+  deleteBarangMasukByIdController,
 };

@@ -6,4 +6,6 @@ const createBarangMasukValidation = Joi.object({
   jumlah_barang_masuk: Joi.number().required(),
 });
 
-export { createBarangMasukValidation };
+const deleteBarangMasukValidation = Joi.string().max(50).required();
+
+export { createBarangMasukValidation, deleteBarangMasukValidation };

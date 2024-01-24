@@ -139,5 +139,9 @@ router.post(
   '/api/barang-masuk',
   barangMasukController.createBarangMasukController,
 );
+router.delete(
+  '/api/barang-masuk/:barangMasukId',
+  barangMasukController.deleteBarangMasukByIdController,
+);
 
 export { router };
