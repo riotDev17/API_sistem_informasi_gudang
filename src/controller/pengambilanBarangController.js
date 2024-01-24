@@ -48,8 +48,22 @@ const deletePengambilanBarangByIdController = async (req, res, next) => {
   }
 };
 
+// DELETE MANY
+const deletePengambilanBarangManyController = async (req, res, next) => {
+  try {
+    await pengambilanBarangService.deletePengambilanBarangManyService();
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Menghapus Semua Data Pengambilan Barang!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getPengambilanBarangController,
   createPengambilanBarangController,
   deletePengambilanBarangByIdController,
+  deletePengambilanBarangManyController,
 };

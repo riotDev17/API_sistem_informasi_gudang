@@ -120,5 +120,9 @@ router.delete(
   '/api/pengambilan-barang/:pengambilanBarangId',
   pengambilanBarangController.deletePengambilanBarangByIdController,
 );
+router.delete(
+  '/api/pengambilan-barang',
+  pengambilanBarangController.deletePengambilanBarangManyController,
+);
 
 export { router };

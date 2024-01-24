@@ -88,8 +88,20 @@ const deletePengambilanBarangByIdService = async (pengambilanBarangId) => {
   });
 };
 
+// DELETE MANY
+const deletePengambilanBarangManyService = async () => {
+  const pengambilanBarang = await prismaClient.pengambilanBarang.findMany();
+
+  if (!pengambilanBarang) {
+    throw new ResponseError(404, 'Data Pengambilan Barang Tidak Ditemukan');
+  }
+
+  return prismaClient.pengambilanBarang.deleteMany();
+};
+
 export default {
   getPengambilanBarangService,
   createPengambilanBarangService,
   deletePengambilanBarangByIdService,
+  deletePengambilanBarangManyService,
 };
