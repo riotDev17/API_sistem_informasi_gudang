@@ -1,6 +1,7 @@
 import express from 'express';
 import adminController from '../controller/adminController.js';
 import agamaController from '../controller/agamaController.js';
+import pemasokController from '../controller/pemasokController.js';
 import karyawanController from '../controller/karyawanController.js';
 import satuanBarangController from '../controller/satuanBarangController.js';
 import kategoriBarangController from '../controller/kategoriBarangController.js';
@@ -80,5 +81,8 @@ router.delete(
   '/api/satuan-barang/:satuanBarangId',
   satuanBarangController.deleteSatuanBarangController,
 );
+
+// PEMASOK
+router.post('/api/pemasok', pemasokController.createPemasokController);
 
 export { router };
