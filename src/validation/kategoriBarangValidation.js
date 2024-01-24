@@ -10,9 +10,11 @@ const updateKategoriBarangValidation = Joi.object({
 });
 
 const getKategoriBarangValidation = Joi.string().max(50).required();
+const deleteKategoriBarangValidation = Joi.string().max(50).required();
 
 export {
   createKategoriBarangValidation,
   updateKategoriBarangValidation,
   getKategoriBarangValidation,
+  deleteKategoriBarangValidation,
 };

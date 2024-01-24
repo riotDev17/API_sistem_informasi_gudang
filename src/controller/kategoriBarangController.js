@@ -66,9 +66,24 @@ const updateKategoriBarangController = async (req, res, next) => {
   }
 };
 
+// DELETE
+const deleteKategoriBarangController = async (req, res, next) => {
+  try {
+    const { kategoriBarangId } = req.params;
+    await kategoriBarangService.deleteKategoriBarangService(kategoriBarangId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Menghapus Data Kategori Barang!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getKategoriBarangController,
   getKategoriBarangByIdController,
   createKategoriBarangController,
   updateKategoriBarangController,
+  deleteKategoriBarangController,
 };

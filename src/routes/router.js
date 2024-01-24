@@ -53,5 +53,9 @@ router.put(
   '/api/kategori-barang/:kategoriBarangId',
   kategoriBarangController.updateKategoriBarangController,
 );
+router.delete(
+  '/api/kategori-barang/:kategoriBarangId',
+  kategoriBarangController.deleteKategoriBarangController,
+);
 
 export { router };
