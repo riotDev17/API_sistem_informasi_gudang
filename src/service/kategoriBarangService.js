@@ -4,6 +4,7 @@ import { ResponseError } from '../error/responseError.js';
 import {
   createKategoriBarangValidation,
   getKategoriBarangValidation,
+  updateKategoriBarangValidation,
 } from '../validation/kategoriBarangValidation.js';
 
 // GET
@@ -14,6 +15,9 @@ const getKategoriBarangService = async () => {
       nama_kategori_barang: true,
       createdAt: true,
       updatedAt: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
     },
   });
 };
@@ -71,8 +75,39 @@ const createKategoriBarangService = async (request) => {
   });
 };
 
+// PUT
+const updateKategoriBarangService = async (request) => {
+  const kategoriBarang = await validation(
+    updateKategoriBarangValidation,
+    request,
+  );
+  const kategoriBarangExist = await prismaClient.kategoriBarang.count({
+    where: {
+      id_kategori_barang: kategoriBarang.id_kategori_barang,
+    },
+  });
+
+  if (kategoriBarangExist !== 1) {
+    throw new ResponseError(404, 'Kategori Barang Tidak Ditemukan');
+  }
+
+  return prismaClient.kategoriBarang.update({
+    where: {
+      id_kategori_barang: kategoriBarang.id_kategori_barang,
+    },
+    data: kategoriBarang,
+    select: {
+      id_kategori_barang: true,
+      nama_kategori_barang: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 export default {
   getKategoriBarangService,
   getKategoriBarangByIdService,
   createKategoriBarangService,
+  updateKategoriBarangService,
 };

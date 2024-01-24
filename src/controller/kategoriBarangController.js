@@ -48,8 +48,27 @@ const createKategoriBarangController = async (req, res, next) => {
   }
 };
 
+// PUT
+const updateKategoriBarangController = async (req, res, next) => {
+  try {
+    const { kategoriBarangId } = req.params;
+    const request = req.body;
+    request.id_kategori_barang = kategoriBarangId;
+    const result =
+      await kategoriBarangService.updateKategoriBarangService(request);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mengubah Data Kategori Barang!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getKategoriBarangController,
   getKategoriBarangByIdController,
   createKategoriBarangController,
+  updateKategoriBarangController,
 };

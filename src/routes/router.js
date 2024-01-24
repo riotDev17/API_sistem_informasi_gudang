@@ -49,5 +49,9 @@ router.post(
   '/api/kategori-barang',
   kategoriBarangController.createKategoriBarangController,
 );
+router.put(
+  '/api/kategori-barang/:kategoriBarangId',
+  kategoriBarangController.updateKategoriBarangController,
+);
 
 export { router };
