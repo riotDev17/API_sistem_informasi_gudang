@@ -33,21 +33,22 @@ model Agama {
 }
 
 model Karyawan {
-  id_karyawan       String              @id @default(uuid())
-  no_karyawan       Int                 @db.Integer
-  nama_karyawan     String              @db.VarChar(50)
-  jenis_kelamin     String              @db.VarChar(25)
-  tempat_lahir      String              @db.Text
-  tanggal_lahir     String              @db.VarChar(50)
-  tanggal_masuk     String              @db.VarChar(50)
-  id_agama          String
-  agama             Agama               @relation(fields: [id_agama], references: [id_agama])
-  alamat            String              @db.Text
-  no_telp           String              @db.VarChar(25)
-  foto_karyawan     String?             @db.Text
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  PengambilanBarang PengambilanBarang[]
+  id_karyawan              String                     @id @default(uuid())
+  no_karyawan              Int                        @db.Integer
+  nama_karyawan            String                     @db.VarChar(50)
+  jenis_kelamin            String                     @db.VarChar(25)
+  tempat_lahir             String                     @db.Text
+  tanggal_lahir            String                     @db.VarChar(50)
+  tanggal_masuk            String                     @db.VarChar(50)
+  id_agama                 String
+  agama                    Agama                      @relation(fields: [id_agama], references: [id_agama])
+  alamat                   String                     @db.Text
+  no_telp                  String                     @db.VarChar(25)
+  foto_karyawan            String?                    @db.Text
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  PengambilanBarang        PengambilanBarang[]
+  LaporanPengambilanBarang LaporanPengambilanBarang[]
 
   @@map("karyawan")
 }
@@ -86,23 +87,25 @@ model Pemasok {
 }
 
 model Barang {
-  id_barang          String              @id @default(uuid())
-  kode_barang        String              @db.VarChar(50)
-  nama_barang        String              @db.VarChar(50)
-  id_kategori_barang String
-  kategori_barang    KategoriBarang      @relation(fields: [id_kategori_barang], references: [id_kategori_barang])
-  stok_barang        Int                 @db.Integer
-  id_satuan_barang   String
-  satuan_barang      SatuanBarang        @relation(fields: [id_satuan_barang], references: [id_satuan_barang])
-  lokasi_barang      String              @db.Text
-  id_pemasok         String
-  pemasok            Pemasok             @relation(fields: [id_pemasok], references: [id_pemasok])
-  keterangan_barang  String              @db.Text
-  foto_barang        String?             @db.Text
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  PengambilanBarang  PengambilanBarang[]
-  BarangMasuk        BarangMasuk[]
+  id_barang                String                     @id @default(uuid())
+  kode_barang              String                     @db.VarChar(50)
+  nama_barang              String                     @db.VarChar(50)
+  id_kategori_barang       String
+  kategori_barang          KategoriBarang             @relation(fields: [id_kategori_barang], references: [id_kategori_barang])
+  stok_barang              Int                        @db.Integer
+  id_satuan_barang         String
+  satuan_barang            SatuanBarang               @relation(fields: [id_satuan_barang], references: [id_satuan_barang])
+  lokasi_barang            String                     @db.Text
+  id_pemasok               String
+  pemasok                  Pemasok                    @relation(fields: [id_pemasok], references: [id_pemasok])
+  keterangan_barang        String                     @db.Text
+  foto_barang              String?                    @db.Text
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  PengambilanBarang        PengambilanBarang[]
+  BarangMasuk              BarangMasuk[]
+  LaporanPengambilanBarang LaporanPengambilanBarang[]
+  LaporanBarangMasuk       LaporanBarangMasuk[]
 
   @@map("barang")
 }
@@ -121,6 +124,20 @@ model PengambilanBarang {
   @@map("pengambilan_barang")
 }
 
+model LaporanPengambilanBarang {
+  id_laporan_pengambilan_barang String   @id @default(uuid())
+  tanggal_pengambilan_barang    String   @db.VarChar(50)
+  id_barang                     String
+  barang                        Barang   @relation(fields: [id_barang], references: [id_barang])
+  id_karyawan                   String
+  karyawan                      Karyawan @relation(fields: [id_karyawan], references: [id_karyawan])
+  jumlah_pengambilan_barang     Int      @db.Integer
+  createdAt                     DateTime @default(now())
+  updatedAt                     DateTime @updatedAt
+
+  @@map("laporan_pengambilan_barang")
+}
+
 model BarangMasuk {
   id_barang_masuk      String   @id @default(uuid())
   tanggal_barang_masuk String   @db.VarChar(50)
@@ -131,4 +148,16 @@ model BarangMasuk {
   updatedAt            DateTime @updatedAt
 
   @@map("barang_masuk")
+}
+
+model LaporanBarangMasuk {
+  id_laporan_barang_masuk String   @id @default(uuid())
+  tanggal_barang_masuk    String   @db.VarChar(50)
+  id_barang               String
+  barang                  Barang   @relation(fields: [id_barang], references: [id_barang])
+  jumlah_barang_masuk     Int      @db.Integer
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  @@map("laporan_barang_masuk")
 }
