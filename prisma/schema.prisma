@@ -109,7 +109,7 @@ model Barang {
 
 model PengambilanBarang {
   id_pengambilan_barang      String   @id @default(uuid())
-  tanggal_pengambilan_barang DateTime @db.Date
+  tanggal_pengambilan_barang String   @db.VarChar(50)
   id_barang                  String
   barang                     Barang   @relation(fields: [id_barang], references: [id_barang])
   id_karyawan                String
@@ -123,7 +123,7 @@ model PengambilanBarang {
 
 model BarangMasuk {
   id_barang_masuk      String   @id @default(uuid())
-  tanggal_barang_masuk DateTime @db.Date
+  tanggal_barang_masuk String   @db.VarChar(50)
   id_barang            String
   barang               Barang   @relation(fields: [id_barang], references: [id_barang])
   jumlah_barang_masuk  Int      @db.Integer
