@@ -44,8 +44,26 @@ const createPemasokController = async (req, res, next) => {
   }
 };
 
+// PUT
+const updatePemasokController = async (req, res, next) => {
+  try {
+    const { pemasokId } = req.params;
+    const request = req.body;
+    request.id_pemasok = pemasokId;
+    const result = await pemasokService.updatePemasokService(request);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Memperbarui Data Pemasok!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getPemasokController,
   createPemasokController,
   getPemasokByIdController,
+  updatePemasokController,
 };

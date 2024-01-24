@@ -89,5 +89,9 @@ router.get(
   pemasokController.getPemasokByIdController,
 );
 router.post('/api/pemasok', pemasokController.createPemasokController);
+router.put(
+  '/api/pemasok/:pemasokId',
+  pemasokController.updatePemasokController,
+);
 
 export { router };
