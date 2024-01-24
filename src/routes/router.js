@@ -8,6 +8,7 @@ import barangMasukController from '../controller/barangMasukController.js';
 import satuanBarangController from '../controller/satuanBarangController.js';
 import kategoriBarangController from '../controller/kategoriBarangController.js';
 import pengambilanBarangController from '../controller/pengambilanBarangController.js';
+import laporanBarangMasukController from '../controller/laporanBarangMasukController.js';
 import laporanPengambilanBarangController from '../controller/laporanPengambilanBarangController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 
@@ -146,6 +147,12 @@ router.delete(
 router.delete(
   '/api/barang-masuk',
   barangMasukController.deleteBarangMasukManyController,
+);
+
+// LAPORAN BARANG MASUK
+router.get(
+  '/api/laporan-barang-masuk',
+  laporanBarangMasukController.getLaporanBarangMasukController,
 );
 
 export { router };
