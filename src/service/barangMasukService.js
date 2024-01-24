@@ -82,8 +82,27 @@ const deleteBarangMasukByIdService = async (barangMasukId) => {
   });
 };
 
+// DELETE MANY
+const deleteBarangMasukManyService = async () => {
+  const barangMasuk = await prismaClient.barangMasuk.findMany();
+
+  const deleteBarangMasuk = await prismaClient.barangMasuk.deleteMany();
+  for (const barang of barangMasuk) {
+    await prismaClient.laporanBarangMasuk.create({
+      data: {
+        id_barang: barang.id_barang,
+        tanggal_barang_masuk: barang.tanggal_barang_masuk,
+        jumlah_barang_masuk: barang.jumlah_barang_masuk,
+      },
+    });
+  }
+
+  return deleteBarangMasuk;
+};
+
 export default {
   getBarangMasukService,
   createBarangMasukService,
   deleteBarangMasukByIdService,
+  deleteBarangMasukManyService,
 };

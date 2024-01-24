@@ -143,5 +143,9 @@ router.delete(
   '/api/barang-masuk/:barangMasukId',
   barangMasukController.deleteBarangMasukByIdController,
 );
+router.delete(
+  '/api/barang-masuk',
+  barangMasukController.deleteBarangMasukManyController,
+);
 
 export { router };

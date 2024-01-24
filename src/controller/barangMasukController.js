@@ -44,8 +44,22 @@ const deleteBarangMasukByIdController = async (req, res, next) => {
   }
 };
 
+// DELETE MANY
+const deleteBarangMasukManyController = async (req, res, next) => {
+  try {
+    await barangMasukService.deleteBarangMasukManyService();
+    res.status(200).json({
+      status: 'Success',
+      message: 'Semua Data Barang Masuk Berhasil Dihapus!',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getBarangMasukController,
   createBarangMasukController,
   deleteBarangMasukByIdController,
+  deleteBarangMasukManyController,
 };
