@@ -2,6 +2,7 @@ import express from 'express';
 import adminController from '../controller/adminController.js';
 import agamaController from '../controller/agamaController.js';
 import karyawanController from '../controller/karyawanController.js';
+import kategoriBarangController from '../controller/kategoriBarangController.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
@@ -33,6 +34,12 @@ router.put(
 router.delete(
   '/api/karyawan/:karyawanId',
   karyawanController.deleteKaryawanController,
+);
+
+// KATEGORI BARANG
+router.post(
+  '/api/kategori-barang',
+  kategoriBarangController.createKategoriBarangController,
 );
 
 export { router };
