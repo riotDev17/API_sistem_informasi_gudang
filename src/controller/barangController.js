@@ -2,6 +2,20 @@ import multer from 'multer';
 import barangService from '../service/barangService.js';
 import uploadFile from '../utils/multer.js';
 
+// GET
+const getBarangController = async (req, res, next) => {
+  try {
+    const result = await barangService.getBarangService();
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mendapatkan Semua Data Barang!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // POST
 const createBarangController = async (req, res, next) => {
   try {
@@ -37,5 +51,6 @@ const createBarangController = async (req, res, next) => {
 };
 
 export default {
+  getBarangController,
   createBarangController,
 };

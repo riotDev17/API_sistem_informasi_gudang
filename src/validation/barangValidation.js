@@ -12,4 +12,6 @@ const createBarangValidation = Joi.object({
   foto_barang: Joi.string().required(),
 });
 
-export { createBarangValidation };
+const getBarangValidation = Joi.string().max(50).required();
+
+export { createBarangValidation, getBarangValidation };

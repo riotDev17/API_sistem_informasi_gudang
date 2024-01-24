@@ -100,6 +100,7 @@ router.delete(
 );
 
 // BARANG
+router.get('/api/barang', barangController.getBarangController);
 router.post('/api/barang', barangController.createBarangController);
 
 export { router };
