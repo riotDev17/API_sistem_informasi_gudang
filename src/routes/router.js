@@ -41,6 +41,10 @@ router.get(
   '/api/kategori-barang',
   kategoriBarangController.getKategoriBarangController,
 );
+router.get(
+  '/api/kategori-barang/:kategoriBarangId',
+  kategoriBarangController.getKategoriBarangByIdController,
+);
 router.post(
   '/api/kategori-barang',
   kategoriBarangController.createKategoriBarangController,

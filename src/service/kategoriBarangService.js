@@ -1,7 +1,10 @@
 import { validation } from '../validation/validation.js';
 import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
-import { createKategoriBarangValidation } from '../validation/kategoriBarangValidation.js';
+import {
+  createKategoriBarangValidation,
+  getKategoriBarangValidation,
+} from '../validation/kategoriBarangValidation.js';
 
 // GET
 const getKategoriBarangService = async () => {
@@ -13,6 +16,31 @@ const getKategoriBarangService = async () => {
       updatedAt: true,
     },
   });
+};
+
+// GET BY ID
+const getKategoriBarangByIdService = async (kategoriBarangId) => {
+  kategoriBarangId = await validation(
+    getKategoriBarangValidation,
+    kategoriBarangId,
+  );
+  const kategoriBarang = await prismaClient.kategoriBarang.findFirst({
+    where: {
+      id_kategori_barang: kategoriBarangId,
+    },
+    select: {
+      id_kategori_barang: true,
+      nama_kategori_barang: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  if (!kategoriBarang) {
+    throw new ResponseError(404, 'Kategori Barang Tidak Ditemukan');
+  }
+
+  return kategoriBarang;
 };
 
 // POST
@@ -43,4 +71,8 @@ const createKategoriBarangService = async (request) => {
   });
 };
 
-export default { getKategoriBarangService, createKategoriBarangService };
+export default {
+  getKategoriBarangService,
+  getKategoriBarangByIdService,
+  createKategoriBarangService,
+};

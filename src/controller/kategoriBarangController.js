@@ -14,6 +14,24 @@ const getKategoriBarangController = async (req, res, next) => {
   }
 };
 
+// GET BY ID
+const getKategoriBarangByIdController = async (req, res, next) => {
+  try {
+    const { kategoriBarangId } = req.params;
+    const result =
+      await kategoriBarangService.getKategoriBarangByIdService(
+        kategoriBarangId,
+      );
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mendapatkan Data Kategori Barang Berdasarkan ID!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // POST
 const createKategoriBarangController = async (req, res, next) => {
   try {
@@ -30,4 +48,8 @@ const createKategoriBarangController = async (req, res, next) => {
   }
 };
 
-export default { getKategoriBarangController, createKategoriBarangController };
+export default {
+  getKategoriBarangController,
+  getKategoriBarangByIdController,
+  createKategoriBarangController,
+};
