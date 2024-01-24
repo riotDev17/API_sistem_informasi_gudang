@@ -64,6 +64,10 @@ router.get(
   '/api/satuan-barang',
   satuanBarangController.getSatuanBarangController,
 );
+router.get(
+  '/api/satuan-barang/:satuanBarangId',
+  satuanBarangController.getSatuanBarangByIdController,
+);
 router.post(
   '/api/satuan-barang',
   satuanBarangController.createSatuanBarangController,

@@ -14,6 +14,22 @@ const getSatuanBarangController = async (req, res, next) => {
   }
 };
 
+// GET BY ID
+const getSatuanBarangByIdController = async (req, res, next) => {
+  try {
+    const { satuanBarangId } = req.params;
+    const result =
+      await satuanBarangService.getSatuanBarangByIdService(satuanBarangId);
+    res.status(200).json({
+      status: 'Success',
+      message: 'Berhasil Mendapatkan Data Satuan Barang Berdasarkan ID!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // POST
 const createSatuanBarangController = async (req, res, next) => {
   try {
@@ -31,5 +47,6 @@ const createSatuanBarangController = async (req, res, next) => {
 
 export default {
   getSatuanBarangController,
+  getSatuanBarangByIdController,
   createSatuanBarangController,
 };

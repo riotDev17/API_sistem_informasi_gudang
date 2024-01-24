@@ -1,7 +1,10 @@
 import { validation } from '../validation/validation.js';
 import { prismaClient } from '../app/database.js';
 import { ResponseError } from '../error/responseError.js';
-import { createSatuanBarangValidation } from '../validation/satuanBarangValidation.js';
+import {
+  createSatuanBarangValidation,
+  getSatuanBarangValidation,
+} from '../validation/satuanBarangValidation.js';
 
 // GET
 const getSatuanBarangService = async () => {
@@ -18,6 +21,29 @@ const getSatuanBarangService = async () => {
   });
 };
 
+// GET BY ID
+const getSatuanBarangByIdService = async (satuanBarangId) => {
+  satuanBarangId = await validation(getSatuanBarangValidation, satuanBarangId);
+
+  const satuanBarang = await prismaClient.satuanBarang.findFirst({
+    where: {
+      id_satuan_barang: satuanBarangId,
+    },
+    select: {
+      id_satuan_barang: true,
+      nama_satuan_barang: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  if (!satuanBarang) {
+    throw new ResponseError(404, 'Satuan Barang Tidak Ditemukan!');
+  }
+
+  return satuanBarang;
+};
+
 // POST
 const createSatuanBarangService = async (request) => {
   const satuanBarang = await validation(createSatuanBarangValidation, request);
@@ -28,7 +54,7 @@ const createSatuanBarangService = async (request) => {
   });
 
   if (satuanBarangExist) {
-    throw new ResponseError(409, 'Satuan Barang Sudah Ada');
+    throw new ResponseError(409, 'Satuan Barang Sudah Ada!');
   }
 
   return prismaClient.satuanBarang.create({
@@ -46,5 +72,6 @@ const createSatuanBarangService = async (request) => {
 
 export default {
   getSatuanBarangService,
+  getSatuanBarangByIdService,
   createSatuanBarangService,
 };
