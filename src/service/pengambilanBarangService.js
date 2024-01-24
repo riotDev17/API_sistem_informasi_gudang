@@ -91,7 +91,6 @@ const deletePengambilanBarangByIdService = async (pengambilanBarangId) => {
 // DELETE MANY
 const deletePengambilanBarangManyService = async () => {
   const pengambilanBarang = await prismaClient.pengambilanBarang.findMany();
-  console.log(pengambilanBarang);
 
   const deletePengambilanBarang =
     await prismaClient.pengambilanBarang.deleteMany();
