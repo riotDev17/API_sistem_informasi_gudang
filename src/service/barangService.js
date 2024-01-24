@@ -4,6 +4,7 @@ import { ResponseError } from '../error/responseError.js';
 import {
   createBarangValidation,
   getBarangValidation,
+  updateBarangValidation,
 } from '../validation/barangValidation.js';
 
 // GET
@@ -133,8 +134,58 @@ const createBarangService = async (request) => {
   });
 };
 
+// PUT
+const updateBarangService = async (request) => {
+  const barang = await validation(updateBarangValidation, request);
+  const barangExist = await prismaClient.barang.findUnique({
+    where: {
+      id_barang: barang.id_barang,
+    },
+  });
+
+  if (!barangExist) {
+    throw new ResponseError(404, 'Barang Tidak Ditemukan!');
+  }
+
+  return prismaClient.barang.update({
+    where: {
+      id_barang: barang.id_barang,
+    },
+    data: barang,
+    select: {
+      id_barang: true,
+      kode_barang: true,
+      nama_barang: true,
+      kategori_barang: {
+        select: {
+          id_kategori_barang: true,
+          nama_kategori_barang: true,
+        },
+      },
+      stok_barang: true,
+      satuan_barang: {
+        select: {
+          id_satuan_barang: true,
+          nama_satuan_barang: true,
+        },
+      },
+      lokasi_barang: true,
+      pemasok: {
+        select: {
+          id_pemasok: true,
+          nama_pemasok: true,
+        },
+      },
+      foto_barang: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 export default {
   getBarangService,
   getBarangByIdService,
   createBarangService,
+  updateBarangService,
 };

@@ -65,8 +65,46 @@ const createBarangController = async (req, res, next) => {
   }
 };
 
+// PUT
+const updateBarangController = async (req, res, next) => {
+  try {
+    uploadFile.single('foto_barang')(req, res, async (error) => {
+      if (error instanceof multer.MulterError) {
+        res.status(400).json({
+          status: 'Error',
+          message: error.message,
+        });
+      } else if (error) {
+        next(error);
+      }
+
+      const { barangId } = req.params;
+      const request = req.body;
+      request.id_barang = barangId;
+
+      if (req.file) {
+        request.foto_barang = req.file.path;
+      }
+
+      try {
+        const result = await barangService.updateBarangService(request);
+        res.status(200).json({
+          status: 'Success',
+          message: 'Berhasil Mengubah Data Barang!',
+          data: result,
+        });
+      } catch (error) {
+        next(error);
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   getBarangController,
   getBarangByIdController,
   createBarangController,
+  updateBarangController,
 };
