@@ -60,6 +60,10 @@ router.delete(
 );
 
 // SATUAN BARANG
+router.get(
+  '/api/satuan-barang',
+  satuanBarangController.getSatuanBarangController,
+);
 router.post(
   '/api/satuan-barang',
   satuanBarangController.createSatuanBarangController,
