@@ -76,7 +76,7 @@ model Pemasok {
   id_pemasok          String   @id @default(uuid())
   nama_pemasok        String   @db.VarChar(50)
   nama_kontak_pemasok String   @db.VarChar(50)
-  no_telp             Int      @db.Integer
+  no_telp             String   @db.VarChar(25)
   alamat              String   @db.Text
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
