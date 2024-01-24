@@ -8,6 +8,7 @@ import kategoriBarangController from '../controller/kategoriBarangController.js'
 import { authMiddleware } from '../middleware/authMiddleware.js';
 import barangController from '../controller/barangController.js';
 import pengambilanBarangController from '../controller/pengambilanBarangController.js';
+import laporanPengambilanBarangController from '../controller/laporanPengambilanBarangController.js';
 
 const router = express.Router();
 router.use(authMiddleware);
@@ -123,6 +124,12 @@ router.delete(
 router.delete(
   '/api/pengambilan-barang',
   pengambilanBarangController.deletePengambilanBarangManyController,
+);
+
+// LAPORAN PENGAMBILAN BARANG
+router.get(
+  '/api/laporan-pengambilan-barang',
+  laporanPengambilanBarangController.getLaporanPengambilanBarangController,
 );
 
 export { router };
