@@ -6,7 +6,8 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'API',
-      description: 'Ini adalah dokumentasi API untuk projek Sistem Informasi Perpustakaan berbasis Web',
+      description:
+        'Ini adalah dokumentasi API untuk projek Sistem Informasi Perpustakaan berbasis Web',
       version: '1.0.0',
       contact: {
         name: 'Thomas Alberto',
