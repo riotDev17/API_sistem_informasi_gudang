@@ -31,7 +31,7 @@
  *          schema:
  *            $ref: '#/components/schemas/Add Agama'
  *    responses:
- *      200:
+ *      201:
  *        description: Success
  *        content:
  *          application/json:

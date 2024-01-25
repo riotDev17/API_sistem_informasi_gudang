@@ -32,7 +32,7 @@
  *          schema:
  *            $ref: '#/components/schemas/Create Karyawan'
  *    responses:
- *      200:
+ *      201:
  *        description: Create Karyawan Success
  *        content:
  *          application/json:
