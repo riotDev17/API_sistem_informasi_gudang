@@ -50,28 +50,6 @@
  *            updatedAt:
  *              type: string
  *              description: updated at
- *    Register Admin Bad Request:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Bad Request
- *          description: Message
- *    Register Admin Conflict:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Conflict
- *          description: Message
  *
  */
 
@@ -115,28 +93,6 @@
  *            token:
  *              type: string
  *              description: token
- *    Login Admin Bad Request:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Bad Request
- *          description: Message
- *    Login Admin Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: Message Unauthorized
  * */
 
 // ======= ADMIN GET DATA =======
@@ -176,18 +132,6 @@
  *            updatedAt:
  *              type: string
  *              description: updated at
- *    Get Admin Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: Message Unauthorized
- *
  * */
 
 // ======== ADMIN UPDATE =========
@@ -238,39 +182,6 @@
  *            updatedAt:
  *              type: string
  *              description: updated at
- *    Update Admin Bad Request:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Bad Request
- *          description: Message
- *    Update Admin Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: Message Unauthorized
- *    Update Admin Not Found:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Not Found
- *        message:
- *          type: string
- *          default: Message Not Found
- *          description: Message Not Found
  * */
 
 // ======== ADMIN LOGOUT =========
@@ -289,15 +200,4 @@
  *          type: string
  *          default: Message Success
  *          description: message
- *    Logout Admin Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: Message Unauthorized
  * */

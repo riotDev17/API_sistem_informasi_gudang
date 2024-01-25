@@ -19,18 +19,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Register Admin Success'
- *      400:
- *        description: Bad Request
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Register Admin Bad Request'
- *      409:
- *        description: Conflict
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Register Admin Conflict'
  */
 
 // ======== ADMIN LOGIN =========
@@ -54,18 +42,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Login Admin Success'
- *      400:
- *        description: Bad Request
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Login Admin Bad Request'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Login Admin Unauthorized'
  *
  * */
 
@@ -85,13 +61,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Get Admin Success'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Get Admin Unauthorized'
- *
  * */
 
 // ======== ADMIN UPDATE =========
@@ -123,24 +92,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Update Admin Success'
- *      400:
- *        description: Bad Request
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Update Admin Bad Request'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Update Admin Unauthorized'
- *      404:
- *        description: Not Found
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Update Admin Not Found'
  *
  * */
 
@@ -160,11 +111,5 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Logout Admin Success'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Logout Admin Unauthorized'
  *
  * */
