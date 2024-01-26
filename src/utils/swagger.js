@@ -5,9 +5,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API',
+      title: 'API Sistem Informasi Gudang ',
       description:
-        'Ini adalah dokumentasi API untuk projek Sistem Informasi Perpustakaan berbasis Web',
+        'Dokumentasi ini menjelaskan tentang API sistem informasi gudang yang dibuat menggunakan Express JS dan Prisma. API ini menyediakan fungsionalitas untuk mengelola data gudang, termasuk barang, stok, dan lain sebagainya.',
       version: '1.0.0',
       contact: {
         name: 'Thomas Alberto',
