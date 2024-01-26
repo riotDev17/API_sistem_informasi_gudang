@@ -14,12 +14,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Get Agama Success'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Get Agama Unauthorized'
  * */
 
 // ====== ADD AGAMA ======
@@ -37,30 +31,12 @@
  *          schema:
  *            $ref: '#/components/schemas/Add Agama'
  *    responses:
- *      200:
+ *      201:
  *        description: Success
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Add Agama Success'
- *      400:
- *        description: Bad Request
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Add Agama Bad Request'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Add Agama Unauthorized'
- *      409:
- *        description: Conflict
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Add Agama Conflict'
  * */
 
 // ====== GET AGAMA BY ID ======
@@ -86,18 +62,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Get Agama By ID Success'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Get Agama By ID Unauthorized'
- *      404:
- *        description: Not Found
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Get Agama By ID Not Found'
  *
  *
  * */
@@ -131,24 +95,6 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Update Agama Success'
- *      400:
- *        description: Bad Request
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Update Agama Bad Request'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Update Agama Unauthorized'
- *      404:
- *        description: Not Found
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Update Agama Not Found'
  *
  * */
 
@@ -175,17 +121,5 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/Delete Agama Success'
- *      401:
- *        description: Unauthorized
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Delete Agama Unauthorized'
- *      404:
- *        description: Not Found
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Delete Agama Not Found'
  *
  * */

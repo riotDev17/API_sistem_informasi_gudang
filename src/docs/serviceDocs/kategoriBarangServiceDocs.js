@@ -1,9 +1,9 @@
-// ====== GET AGAMA ======
+// GET
 /**
  * @openapi
  * components:
  *  schemas:
- *    Get Agama Success:
+ *    Get Kategori Barang Success:
  *      type: object
  *      properties:
  *        status:
@@ -13,40 +13,41 @@
  *        message:
  *          type: string
  *          default: Message Success
- *          description: message
+ *          desctiption: Message Success
  *        data:
  *          type: array
  *          items:
  *            type: object
  *            properties:
- *              id_agama:
+ *              id_kategori_barang:
  *                type: string
- *                description: id agama
- *              nama_agama:
+ *                description: id kategori barang
+ *              nama_kategori_barang:
  *                type: string
- *                description: nama agama
+ *                description: nama kategori barang
  *              createdAt:
  *                type: string
  *                description: created at
  *              updatedAt:
  *                type: string
  *                description: updated at
- * */
+ *
+ */
 
-// ====== ADD AGAMA ======
+// POST
 /**
  * @openapi
  * components:
  *  schemas:
- *    Add Agama:
+ *    Create Kategori Barang:
  *      type: object
  *      required:
- *        - nama_agama
+ *        - nama_kategori_barang
  *      properties:
- *        nama_agama:
+ *        nama_kategori_barang:
  *          type: string
- *          description: nama agama
- *    Add Agama Success:
+ *          description: nama kategori barang
+ *    Create Kategori Barang Success:
  *      type: object
  *      properties:
  *        status:
@@ -56,49 +57,16 @@
  *        message:
  *          type: string
  *          default: Message Success
- *          description: message
+ *          desctiption: Message Success
  *        data:
  *          type: object
  *          properties:
- *            id_agama:
+ *            id_kategori_barang:
  *              type: string
- *              description: id agama
- *            nama_agama:
+ *              description: id kategori barang
+ *            nama_kategori_barang:
  *              type: string
- *              description: nama agama
- *            createdAt:
- *              type: string
- *              description: created at
- *            updatedAt:
- *              type: string
- *              description: updated at
- * */
-
-// ====== GET AGAMA BY ID ======
-/**
- * @openapi
- * components:
- *  schemas:
- *    Get Agama By ID Success:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Success
- *          description: Success
- *        message:
- *          type: string
- *          default: Message Success
- *          description: message
- *        data:
- *          type: object
- *          properties:
- *            id_agama:
- *              type: string
- *              description: id agama
- *            nama_agama:
- *              type: string
- *              description: nama agama
+ *              description: nama kategori barang
  *            createdAt:
  *              type: string
  *              description: created at
@@ -106,22 +74,14 @@
  *              type: string
  *              description: updated at
  *
- * */
+ */
 
-// ====== UPDATE AGAMA ======
+// GET BY ID
 /**
  * @openapi
  * components:
  *  schemas:
- *    Update Agama:
- *      type: object
- *      required:
- *        - nama_agama
- *      properties:
- *        nama_agama:
- *          type: string
- *          description: nama agama
- *    Update Agama Success:
+ *    Get Kategori Barang By Id Success:
  *      type: object
  *      properties:
  *        status:
@@ -131,30 +91,39 @@
  *        message:
  *          type: string
  *          default: Message Success
- *          description: message
+ *          desctiption: Message Success
  *        data:
  *          type: object
  *          properties:
- *            id_agama:
+ *            id_kategori_barang:
  *              type: string
- *              description: id agama
- *            nama_agama:
+ *              description: id kategori barang
+ *            nama_kategori_barang:
  *              type: string
- *              description: nama agama
+ *              description: nama kategori barang
  *            createdAt:
  *              type: string
  *              description: created at
  *            updatedAt:
  *              type: string
  *              description: updated at
- * */
+ *
+ */
 
-// ====== DELETE AGAMA ======
+// PUT
 /**
  * @openapi
  * components:
  *  schemas:
- *    Delete Agama Success:
+ *    Update Kategori Barang:
+ *      type: object
+ *      required:
+ *        - nama_kategori_barang
+ *      properties:
+ *        nama_kategori_barang:
+ *          type: string
+ *          description: nama kategori barang
+ *    Update Kategori Barang Success:
  *      type: object
  *      properties:
  *        status:
@@ -164,5 +133,40 @@
  *        message:
  *          type: string
  *          default: Message Success
- *          description: message
- * */
+ *          desctiption: Message Success
+ *        data:
+ *          type: object
+ *          properties:
+ *            id_kategori_barang:
+ *              type: string
+ *              description: id kategori barang
+ *            nama_kategori_barang:
+ *              type: string
+ *              description: nama kategori barang
+ *            createdAt:
+ *              type: string
+ *              description: created at
+ *            updatedAt:
+ *              type: string
+ *              description: updated at
+ *
+ */
+
+// DELETE
+/**
+ * @openapi
+ * components:
+ *  schemas:
+ *    Delete Kategori Barang Success:
+ *      type: object
+ *      properties:
+ *        status:
+ *          type: string
+ *          default: Success
+ *          description: Success
+ *        message:
+ *          type: string
+ *          default: Message Success
+ *          desctiption: Message Success
+ *
+ */
