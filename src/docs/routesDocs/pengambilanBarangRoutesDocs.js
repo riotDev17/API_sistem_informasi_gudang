@@ -40,6 +40,24 @@
  *               $ref: '#/components/schemas/Create Pengambilan Barang Success'
  */
 
+// DELETE ALL
+/**
+ * @openapi
+ * /api/pengambilan-Barang:
+ *   delete:
+ *     tags:
+ *       - Pengambilan Barang
+ *     summary: Delete All Pengambilan Barang
+ *     description: Delete All Pengambilan Barang
+ *     responses:
+ *       200:
+ *         description: Delete All Pengambilan Barang Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Delete All Pengambilan Barang Success'
+ */
+
 // GET BY ID
 /**
  * @openapi

@@ -141,6 +141,24 @@
  *
  */
 
+// DELETE ALL
+/**
+ * @openapi
+ * components:
+ *  schemas:
+ *    Delete All Pengambilan Barang Success:
+ *      type: object
+ *      properties:
+ *        status:
+ *          type: string
+ *          example: Success
+ *        message:
+ *          type: string
+ *          example: Message Success
+ *
+ *
+ */
+
 // GET BY ID
 /**
  * @openapi
