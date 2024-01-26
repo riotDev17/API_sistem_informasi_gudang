@@ -31,17 +31,6 @@
  *              updatedAt:
  *                type: string
  *                description: updated at
- *    Get Agama Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: message
  * */
 
 // ====== ADD AGAMA ======
@@ -83,39 +72,6 @@
  *            updatedAt:
  *              type: string
  *              description: updated at
- *    Add Agama Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: message
- *    Add Agama Bad Request:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Failed
- *        message:
- *          type: string
- *          default: Message Bad Request
- *          description: message
- *    Add Agama Conflict:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Conflict
- *        message:
- *          type: string
- *          default: Message Conflict
- *          description: message
  * */
 
 // ====== GET AGAMA BY ID ======
@@ -149,28 +105,6 @@
  *            updatedAt:
  *              type: string
  *              description: updated at
- *    Get Agama By ID Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: message
- *    Get Agama By ID Not Found:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Not Found
- *          description: message
  *
  * */
 
@@ -213,50 +147,6 @@
  *            updatedAt:
  *              type: string
  *              description: updated at
- *    Update Agama Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: message
- *    Update Agama Bad Request:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Bad Request
- *          description: message
- *    Update Agama Not Found:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Not Found
- *          description: message
- *    Update Agama Conflict:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Conflict
- *          description: Conflict
- *        message:
- *          type: string
- *          default: Message Conflict
- *          description: message
  * */
 
 // ====== DELETE AGAMA ======
@@ -274,27 +164,5 @@
  *        message:
  *          type: string
  *          default: Message Success
- *          description: message
- *    Delete Agama Unauthorized:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Unauthorized
- *        message:
- *          type: string
- *          default: Message Unauthorized
- *          description: message
- *    Delete Agama Not Found:
- *      type: object
- *      properties:
- *        status:
- *          type: string
- *          default: Error
- *          description: Status
- *        message:
- *          type: string
- *          default: Message Not Found
  *          description: message
  * */
