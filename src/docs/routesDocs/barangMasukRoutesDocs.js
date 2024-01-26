@@ -42,6 +42,24 @@
  *               $ref: '#/components/schemas/Create Barang Masuk Success'
  */
 
+// DELETE ALL
+/**
+ * @openapi
+ * /api/barang-masuk:
+ *   delete:
+ *     tags:
+ *       - Barang Masuk
+ *     summary: Delete All Barang Masuk
+ *     description: Delete All Barang Masuk
+ *     responses:
+ *       200:
+ *         description: Delete All Barang Masuk Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Delete All Barang Masuk Success'
+ */
+
 // GET BY ID
 /**
  * @openapi
