@@ -20,6 +20,9 @@ const getPemasokService = async () => {
       createdAt: true,
       updatedAt: true,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 };
 
