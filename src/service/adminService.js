@@ -136,8 +136,6 @@ const logoutAdminService = async (username) => {
   if (!admin) {
     throw new ResponseError(404, 'Admin tidak ditemukan');
   }
-
-  return;
 };
 
 export default {
