@@ -52,8 +52,6 @@ const createPemasokService = async (request) => {
     throw new ResponseError(409, 'Data Pemasok Sudah Ada!');
   }
 
-  pemasok.no_telp_pemasok = `+62${pemasok.no_telp_pemasok}`;
-
   return prismaClient.pemasok.create({
     data: pemasok,
     select: {
@@ -80,8 +78,6 @@ const updatePemasokService = async (request) => {
   if (!pemasokExist) {
     throw new ResponseError(404, 'Data Pemasok Tidak Ditemukan!');
   }
-
-  pemasok.no_telp_pemasok = `+62${pemasok.no_telp_pemasok}`;
 
   return prismaClient.pemasok.update({
     where: {
