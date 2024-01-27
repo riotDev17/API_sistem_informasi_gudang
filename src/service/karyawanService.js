@@ -88,7 +88,6 @@ const createKaryawanService = async (request) => {
   }
 
   karyawan.no_karyawan = randomNumber();
-  karyawan.no_telp = `+62${karyawan.no_telp}`;
 
   return prismaClient.karyawan.create({
     data: karyawan,
@@ -127,8 +126,6 @@ const updateKaryawanService = async (request) => {
   if (!karyawanExist) {
     throw new ResponseError(404, 'Data Karyawan Tidak Ditemukan!');
   }
-
-  karyawan.no_telp = `+62${karyawan.no_telp}`;
 
   return prismaClient.karyawan.update({
     where: {
