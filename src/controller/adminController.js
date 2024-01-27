@@ -86,19 +86,10 @@ const getAdminController = async (req, res, next) => {
 
 const logoutAdminController = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
-    if (!token) {
-      throw new ResponseError(
-        401,
-        'Token tidak ditemukan di cookie , gagal logout!',
-      );
-    }
-
     const username = req.admin.username;
     await adminService.logoutAdminService(username);
-    res.clearCookie('token');
     res.status(200).json({
-      status: 'Success',
+      status: 'success',
       message: 'Berhasil logout!',
     });
   } catch (error) {
