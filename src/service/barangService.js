@@ -35,6 +35,7 @@ const getBarangService = async () => {
           nama_pemasok: true,
         },
       },
+      keterangan_barang: true,
       foto_barang: true,
       createdAt: true,
       updatedAt: true,
