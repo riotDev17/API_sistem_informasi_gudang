@@ -58,62 +58,6 @@
  *               $ref: '#/components/schemas/Delete All Pengambilan Barang Success'
  */
 
-// GET BY ID
-/**
- * @openapi
- * /api/pengambilan-Barang/{pengambilanBarangId}:
- *   get:
- *     tags:
- *       - Pengambilan Barang
- *     summary: Get Pengambilan Barang By ID
- *     description: Get Pengambilan Barang By ID
- *     parameters:
- *       - name: pengambilanBarangId
- *         in: path
- *         description: id pengambilan barang
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Get Pengambilan Barang By ID Success
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Get Pengambilan Barang By ID Success'
- */
-
-// PUT
-/**
- * @openapi
- * /api/pengambilan-Barang/{pengambilanBarangId}:
- *   put:
- *     tags:
- *       - Pengambilan Barang
- *     summary: Update Pengambilan Barang
- *     description: Update Pengambilan Barang
- *     parameters:
- *       - name: pengambilanBarangId
- *         in: path
- *         description: id pengambilan barang
- *         required: true
- *         schema:
- *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Update Pengambilan Barang'
- *     responses:
- *       200:
- *         description: Update Pengambilan Barang Success
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Update Pengambilan Barang Success'
- */
-
 // DELETE
 /**
  * @openapi
