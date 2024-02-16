@@ -7,7 +7,7 @@ const options = {
     info: {
       title: 'API Sistem Informasi Gudang | GudangNet',
       description:
-        'GudangNet adalah sebuah sistem informasi gudang berbasis website yang dibangun menggunakan React JS dan Express JS. Sistem ini dirancang untuk mempermudah pengelolaan gudang, mulai dari penerimaan barang, penyimpanan barang, hingga pengeluaran barang. ',
+        'GudangNet adalah sebuah sistem informasi gudang berbasis website yang dibangun menggunakan React JS dan Express JS. Sistem ini dirancang untuk mempermudah pengelolaan gudang, mulai dari penerimaan barang, penyimpanan barang, hingga pengeluaran barang. \n\n\nGudangNet memiliki bebarapa fitur antara lain : \n\n- Login Admin \n\n- Manajemen master data seperti Agama , Kategori Barang , Satuan Barang \n\n- Manajemen Karyawan \n\n- Manajemen Pemasok \n\n- Manajemen Barang \n\n- Manajemen Pengambilan Barang \n\n- Manajemen Barang Masuk \n\n- Laporan Pengambilan Barang \n\n- Laporan Barang Masuk \n\n Tech Stack yang saya gunakan dalam membuat REST API ini antara lain : \n\n- Express JS \n\n- JavaScript \n\n- Node JS \n\n- PostgreSQL \n\n- Prisma ORM ',
       version: '1.0.0',
       contact: {
         name: 'Thomas Alberto',
