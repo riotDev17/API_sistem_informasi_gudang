@@ -8,7 +8,7 @@ const getLaporanPengambilanBarangController = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: 'Success Mendapatkan Semua Laporan Pengambilan Barang!',
-      results: result,
+      data: result,
     });
   } catch (error) {
     next(error);

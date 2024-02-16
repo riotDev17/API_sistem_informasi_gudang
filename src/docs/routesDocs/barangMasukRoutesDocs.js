@@ -60,62 +60,6 @@
  *               $ref: '#/components/schemas/Delete All Barang Masuk Success'
  */
 
-// GET BY ID
-/**
- * @openapi
- * /api/barang-masuk/{barangMasukId}:
- *   get:
- *     tags:
- *       - Barang Masuk
- *     summary: Get Barang Masuk By Id
- *     description: Get Barang Masuk By Id
- *     parameters:
- *       - name: barangMasukId
- *         in: path
- *         required: true
- *         description: id barang masuk
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Get Barang Masuk By Id Success
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Get Barang Masuk By Id Success'
- */
-
-// PUT
-/**
- * @openapi
- * /api/barang-masuk/{barangMasukId}:
- *   put:
- *     tags:
- *       - Barang Masuk
- *     summary: Update Barang Masuk
- *     description: Update Barang Masuk
- *     parameters:
- *       - name: barangMasukId
- *         in: path
- *         required: true
- *         description: id barang masuk
- *         schema:
- *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Create Barang Masuk'
- *     responses:
- *       200:
- *         description: Update Barang Masuk Success
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Update Barang Masuk Success'
- */
-
 // DELETE
 /**
  * @openapi
