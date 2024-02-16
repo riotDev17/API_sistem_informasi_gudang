@@ -5,9 +5,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API Sistem Informasi Gudang ',
+      title: 'API Sistem Informasi Gudang | GudangNet',
       description:
-        'Dokumentasi ini menjelaskan tentang API sistem informasi gudang yang dibuat menggunakan Express JS dan Prisma. API ini menyediakan fungsionalitas untuk mengelola data gudang, termasuk barang, stok, dan lain sebagainya.',
+        'GudangNet adalah sebuah sistem informasi gudang berbasis website yang dibangun menggunakan React JS dan Express JS. Sistem ini dirancang untuk mempermudah pengelolaan gudang, mulai dari penerimaan barang, penyimpanan barang, hingga pengeluaran barang. ',
       version: '1.0.0',
       contact: {
         name: 'Thomas Alberto',
